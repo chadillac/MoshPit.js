@@ -12,6 +12,9 @@
   display: none;
   margin: 0;
 }
+.desktop_options {
+  display: none;
+}
 .Panel_1_shown #Panel_1 {
   display: block;
 }
@@ -25,6 +28,10 @@
 .Panel_1_shown.Panel_2_shown #Panel_2 {
   left: 50.25%;
   right: 0.5%;
+}
+.desktop .desktop_options,
+.desktop_wide .desktop_options {
+  display: block;
 }
 .tablet .Panels_toggle {
   display: none !important;
@@ -72,4 +79,18 @@
   left: 0;
   right: 0;
   background-color: #EEE;
+}
+.state_horz.desktop .Panel_1_shown.Panel_2_shown #Panel_1,
+.state_horz.desktop_wide .Panel_1_shown.Panel_2_shown #Panel_1 {
+  top: 55px;
+  bottom: 50.25%;
+  left: 0.5%;
+  right: 0.5%;
+}
+.state_horz.desktop .Panel_1_shown.Panel_2_shown #Panel_2,
+.state_horz.desktop_wide .Panel_1_shown.Panel_2_shown #Panel_2 {
+  top: 51%;
+  bottom: 5px;
+  left: 0.5%;
+  right: 0.5%;
 }

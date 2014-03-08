@@ -3,6 +3,17 @@
 
     var $html,$body;
 
+    var css = {
+        shown:{
+            prefix:"",
+            postfix:"_shown"    
+        },
+        state:{
+            prefix:"state_",
+            postfix:""
+        }
+    }
+
     // timeout event id lookup
     var timers = {};
 
@@ -29,12 +40,21 @@
             }
             return namespace;
         },
-        rtrim: function(the_string) {
-            return the_string.replace(/\s+$/,'');     
+        csv_to_class: function(csv,pre,post) {
+            var pre = (typeof pre != 'undefined' && pre.length) ? " "+pre : "";
+            var post = (typeof post != 'undefined' && post.length) ? post+" " : "";
+            // get the CSV list whipped into shape
+            csv = csv.replace(' ','');
+            csv = csv.split(',').join('[post],').split(',').join('[pre]');
+            csv = csv.replace('[post]',post).replace('[pre]',pre);
+            csv = pre + csv + post;
+            return $.trim(csv);
         },
-        class_chain: function(csv_list) {
-            var postfix = "_shown ";
-            return util.rtrim(csv_list.split(',').join(postfix)+postfix);
+        shown_chain: function(csv_list) {
+            return util.csv_to_class(csv_list,css.shown.prefix,css.shown.postfix);
+        },
+        state_chain: function(csv_list) {
+            return util.csv_to_class(csv_list,css.state.prefix,css.state.postfix);
         },
         get_sizes_chain: function() {
             if (this.sizes_chain) {
@@ -48,7 +68,7 @@
                     sizes_chain += size+" ";
                 }
             }
-            this.sizes_chain = util.rtrim(sizes_chain);
+            this.sizes_chain = $.trim(sizes_chain);
             return this.sizes_chain;
         },
         get_size: function() {
@@ -64,22 +84,25 @@
             } 
         },
         is_shown: function(namespace) {
-            return $body.hasClass(util.class_chain(namespace));
+            return $body.hasClass(util.shown_chain(namespace));
+        },
+        is_state: function(state) {
+            return $html.hasClass(css.state.prefix + state + css.state.postfix);
         }
     };
 
     // various internal event handlers
     var handlers = {
         hide: function(namespace) {
-            $body.removeClass(util.class_chain(namespace)); 
+            $body.removeClass(util.shown_chain(namespace)); 
         },
         show: function(namespace) {
-            $body.addClass(util.class_chain(namespace)); 
+            $body.addClass(util.shown_chain(namespace)); 
         },
         toggle: function(csv_namespace) {
             csv_namespace = csv_namespace.split(',');
             for (var i=0,z=csv_namespace.length;i<z;i++) {
-                var namespace = csv_namespace[i]
+                var namespace = $.trim(csv_namespace[i]);
                 if (util.is_shown(namespace)) {
                     handlers.hide(namespace);
                 } else {
@@ -92,6 +115,23 @@
         },
         marionette_show: function() {
             handlers.show(util.get_namespace(this.el));
+        },
+        add_state: function(state) {
+            $html.addClass("state_"+state);   
+        },
+        del_state: function(state) {
+            $html.removeClass("state_"+state);   
+        },
+        toggle_state: function(csv_state) {
+            csv_state = csv_state.split(',');
+            for (var i=0,z=csv_state.length;i<z;i++) {
+                var state = $.trim(csv_state[i]);
+                if (util.is_state(state)) {
+                    handlers.del_state(state);
+                } else {
+                    handlers.add_state(state);    
+                }
+            }
         },
         resize: function(evnt,stable) {
             clearTimeout(timers.resize);
@@ -223,6 +263,12 @@
         toggle: function(Mosher) {
             var namespace = util.get_namespace(Mosher);
             handlers.toggle(namespace);
+        },
+        add_state: function(state) {
+            handlers.add_state(state);
+        },
+        remove_state: function(state) {
+            handlers.del_state(state);
         },
         is_shown: function(Mosher) {
             var namespace = util.get_namespace(Mosher);    
