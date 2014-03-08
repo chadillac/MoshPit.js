@@ -1,3 +1,3 @@
-MoshPit.js (WIP, more coming soon)
+MoshPit.js [WIP]
 ===========================
 Controlled chaos for Views and States
