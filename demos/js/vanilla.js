@@ -21,3 +21,7 @@ function toggle_a_panel(which) {
         show_a_panel(which);    
     }
 }
+
+function remove() {
+    MoshPit.leave('Panel_1');    
+}
