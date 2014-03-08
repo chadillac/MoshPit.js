@@ -1,6 +1,8 @@
 (function($){
     'use strict';
 
+    var $html,$body;
+
     // timeout event id lookup
     var timers = {};
 
@@ -62,29 +64,33 @@
             } 
         },
         is_shown: function(namespace) {
-            return $('body').hasClass(util.class_chain(namespace));
+            return $body.hasClass(util.class_chain(namespace));
         }
     };
 
     // various internal event handlers
     var handlers = {
         hide: function(namespace) {
-            $('body').removeClass(util.class_chain(namespace)); 
+            $body.removeClass(util.class_chain(namespace)); 
         },
         show: function(namespace) {
-            $('body').addClass(util.class_chain(namespace)); 
+            $body.addClass(util.class_chain(namespace)); 
         },
-        toggle: function(namespace) {
-            if (util.is_shown(namespace)) {
-                handlers.hide(namespace);
-            } else {
-                handlers.show(namespace);    
+        toggle: function(csv_namespace) {
+            csv_namespace = csv_namespace.split(',');
+            for (var i=0,z=csv_namespace.length;i<z;i++) {
+                var namespace = csv_namespace[i]
+                if (util.is_shown(namespace)) {
+                    handlers.hide(namespace);
+                } else {
+                    handlers.show(namespace);    
+                }
             }
         },
         resize: function(evnt,stable) {
             clearTimeout(timers.resize);
             if (stable) {
-                $('html').removeClass(util.get_sizes_chain()).addClass(util.get_size());
+                $html.removeClass(util.get_sizes_chain()).addClass(util.get_size());
                 return;
             }
             timers.resize = setTimeout(handlers.resize,102,true,true);
@@ -105,49 +111,27 @@
     var moshpit = {
         moshers:{},
         jq_funcs:false,
-        add_marionette: function(Pit, Mosher) {
-            var namespace = String(Mosher.el).substr(1);
-
-            var show = (function(namespace,Mosher){
-                return function() {
-                    handlers.show(namespace);
-                    Mosher.onShow_();
-                };
-            })(namespace,Mosher);
-
-            var hide = (function(namespace,Mosher){
-                return function() {
-                    handlers.hide(namespace);
-                };
-            })(namespace,Mosher);
-
-            moshpit.moshers[namespace] = {
-                show:show,
-                hide:hide    
-            }
-
-            Mosher.onShow_ = Mosher.onShow;
-            Mosher.onShow = show;
-            Mosher.close_ = Mosher.close;
-            Mosher.close = hide;
+        add_marionette: function(Mosher) {
+            Mosher.on('show',function(){
+                handlers.show(util.get_namespace(this.el));
+            });
+            Mosher.on('close',function(){
+                handlers.hide(util.get_namespace(this.el));
+            });
+            moshpit.add_jquery.call(moshpit,$(Mosher.el));
         },
-        del_marionette: function(Pit,Mosher) {
+        del_marionette: function(Mosher) {
             var namespace = String(Mosher.el).substr(1);
             Mosher.onShow = Mosher.onShow_;
             Mosher.close = Mosher.close_;
             delete moshpit.moshers[namespace];
         },
         add_jquery: function($Mosher) {
-            var namespace = $Mosher.attr('id');
+            var namespace = util.get_namespace($Mosher);
             if (moshpit.jq_funcs === false) {
-                moshpit.jq_funcs = {
-                    show: $.fn.show,
-                    hide: $.fn.hide,
-                    toggle: $.fn.toggle
-                };
                 $.fn.show = function() {
                     var namespace = util.get_namespace($(this));
-                    if (moshpit.moshers[$(this).attr('id')]) {
+                    if (moshpit.moshers[namespace]) {
                         handlers.show(namespace);
                     } else {
                         moshpit.jq_funcs.show.apply(this,arguments);    
@@ -155,7 +139,7 @@
                 };
                 $.fn.hide = function() {
                     var namespace = util.get_namespace($(this));
-                    if (moshpit.moshers[$(this).attr('id')]) {
+                    if (moshpit.moshers[namespace]) {
                         handlers.hide(namespace);
                     } else {
                         moshpit.jq_funcs.show.apply(this,arguments);    
@@ -175,28 +159,23 @@
     };
 
     window.MoshPit = {
-        join: function() {
-            if (arguments.length == 2) {
-                moshpit.add_marionette.apply(moshpit,arguments);
-            } else if (arguments[0] instanceof jQuery) {
-                moshpit.add_jquery.apply(moshpit,arguments);
-            } else {
-                if (typeof arguments[0] == 'string') {
-                    // assume this is the id, see if we can find it
-                    var namespace = arguments[0],
-                        $found = false;
-
-                    if (namespace.indexOf('#') != 0) {
-                        namespace = "#"+namespace;
-                    } 
-                    
-                    $found = $(namespace);
-                    if ($found.length) {
-                        // we found a matchin element, use it!
-                        arguments[0] = $found;
-                        moshpit.add_jquery.apply(moshpit,arguments);
-                    }
-                }    
+        join: function(Mosher) {
+            if (typeof Mosher == 'string') {
+                // assume this is the id, see if we can find it
+                Mosher = $('#'+util.get_namespace(Mosher));
+                if (Mosher.length) {
+                    // we found a matchin element, use it!
+                    moshpit.add_jquery.call(moshpit, Mosher);
+                }
+            } else if (typeof Mosher == 'object') {
+                if (Mosher instanceof jQuery) {
+                    moshpit.add_jquery.call(moshpit, Mosher);
+                } else if (Mosher instanceof Marionette.Region
+                           || Mosher instanceof Marionette.View
+                           || Mosher instanceof Marionette.ItemView
+                           || Mosher instanceof Marionette.Layout) {
+                    moshpit.add_marionette.call(moshpit, Mosher);
+                }
             }
         },
         leave: function() {
@@ -223,8 +202,10 @@
     // setup our handlers for window resizes and clicks on elements we
     // know we care about.
     $(function(){
+        handlers.resize();
+        $html = $('html');
+        $body = $('body');
         $(window).on('resize', handlers.resize);
         $(document).on('click','[data-moshpit]', handlers.click);
-        handlers.resize();
     });
 })(jQuery);
