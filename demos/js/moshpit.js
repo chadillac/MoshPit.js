@@ -158,6 +158,7 @@
         }
     };
 
+    // expose publics
     window.MoshPit = {
         join: function(Mosher) {
             if (typeof Mosher == 'string') {

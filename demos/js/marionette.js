@@ -1,42 +1,27 @@
 Demo = new Backbone.Marionette.Application();
 
-Demo.addRegions({
-    Panel_1:'#Panel_1',
-    Panel_2:'#Panel_2'
-});
-
-Panel = Backbone.Marionette.Region.extend({
-    initialize: function(options){
-        var self = this;
-        var name = this.el.substr(1);
-
-        this.el = options.el;
-        this.shown = false;
-
-        // register with MoshPit
-        MoshPit.join(Demo,this);
-
-        this.toggle = function() {
-            if (self.shown) {
-                self.shown = false;
-                self.close();    
-            } else {
-                self.show(self);    
-            }
-        };
-
-        $('body').on('click','.'+name+'_toggle',this.toggle);
-    },
-    onShow: function() { 
-        this.shown = true;
-    },
-    render: function() {
-        $(this.el).html(this.el);
+PanelView = Backbone.Marionette.ItemView.extend({
+    initialize: function(options) {
+        self = this;
+        self.name = options.name;
+        self.template = function() {
+            return self.name;  
+        }
     }
 });
 
+PanelRegion = Backbone.Marionette.Region.extend({
+    initialize: function(options){
+        this.el = options.el;
+        MoshPit.join(this);
+    }
+});
 
 $(function(){
-    Demo.Panel_1.show(new Panel({el:"#Panel_1"}));
-    Demo.Panel_2.show(new Panel({el:"#Panel_2"}));
+    Demo.Panel_1 = new PanelRegion({el:"#Panel_1"});
+    Demo.Panel_2 = new PanelRegion({el:"#Panel_2"});
+    Demo.Panel_1.show(new PanelView({name:"Panel 1"}));
+    Demo.Panel_2.show(new PanelView({name:"Panel 2"}));
+    Demo.start();
 });
+

@@ -1,14 +1,15 @@
 <html>
     <head>
+        <title>MoshPit.js : Demo</title>
         <link type="text/css" media="screen" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></link>
         <link type="text/css" media="screen" rel="stylesheet" href="http://getbootstrap.com/examples/starter-template/starter-template.css"></link>
-        <link type="text/css" media="screen" rel="stylesheet" href="demo.css"></link>
-
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.5.1-bundled/backbone.marionette.js"></script>
 
+        <!-- core -->
+        <link type="text/css" media="screen" rel="stylesheet" href="demo.css"></link>
         <script type="text/javascript" src="js/moshpit.js"></script>
         <script type="text/javascript" src="js/marionette.js"></script>
 
@@ -34,8 +35,9 @@
               <a class="navbar-brand" href="http://github.com/chadillac/MoshPit.js">MoshPit.js</a>
             </div>
             <div class="btns">
-                <button class="Panel_1_toggle show btn btn-danger">Panel 1</button>
-                <button class="Panel_2_toggle show btn btn-danger">Panel 2</button>
+                <button data-moshpit="toggle" data-mosher="Panel_1" class="Panel_1_toggle btn btn-danger">Panel 1</button>
+                <button data-moshpit="toggle" data-mosher="Panel_2" class="Panel_2_toggle btn btn-danger">Panel 2</button>
+                <button data-moshpit="toggle" data-mosher="Panel_1,Panel_2" class="Panels_toggle btn btn-info">Toggle Both</button>
             </div>
           </div>
         </div>
@@ -44,10 +46,10 @@
           <div class="starter-template">
             <h1>^-- click the buttons up there to toggle panels</h1>
 
-            <div class="panel" id="Panel_1"></div>
-            <div class="panel" id="Panel_2"></div>
+            <div class="panel" id="Panel_1">Panel 1</div>
+            <div class="panel" id="Panel_2">Panel 2</div>
 
           </div>
-        </div><!-- /.container -->
+        </div>
     </body>
 </html>

@@ -11,6 +11,9 @@
             $('body').on('click','.Panel_2_toggle',function(){
                 MoshPit.toggle(gui.elems.$Panel_2);
             });
+            $('body').on('click','.Panels_toggle',function(){
+                MoshPit.toggle('Panel_1,Panel_2');    
+            });
         }    
     };    
 
