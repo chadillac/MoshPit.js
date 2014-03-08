@@ -1,0 +1,68 @@
+/* default style for all panels */
+.panel {
+  position: absolute;
+  background-color: #000;
+  color: #FFF;
+  top: 55px;
+  left: 1%;
+  right: 1%;
+  width: auto;
+  bottom: 5px;
+  font-size: 30px;
+  display: none;
+  margin: 0;
+}
+.Panel_1_shown #Panel_1 {
+  display: block;
+}
+.Panel_2_shown #Panel_2 {
+  display: block;
+}
+.Panel_1_shown.Panel_2_shown #Panel_1 {
+  left: 1%;
+  right: 51%;
+}
+.Panel_1_shown.Panel_2_shown #Panel_2 {
+  left: 51%;
+  right: 1%;
+}
+.tablet .Panel_1_shown.Panel_2_shown .panel {
+  left: 0;
+  right: 0;
+  background-color: #333;
+  border-radius: 0;
+}
+.tablet .Panel_1_shown.Panel_2_shown #Panel_1 {
+  color: #999;
+  left: 0;
+  right: 50%;
+}
+.tablet .Panel_1_shown.Panel_2_shown #Panel_2 {
+  color: #666;
+  left: 50%;
+  right: 0;
+  background-color: #EEE;
+  border-left: 1px solid #999;
+}
+.mobile .panel {
+  background-color: #999;
+  color: #333;
+  left: 0;
+  right: 0;
+}
+.mobile .Panel_2_toggle {
+  display: none !important;
+}
+.mobile .Panel_1_shown .Panel_2_toggle {
+  display: block !important;
+}
+.mobile .Panel_2_shown #Panel_1,
+.mobile .Panel_2_shown .Panel_1_toggle {
+  display: none !important;
+}
+.mobile .Panel_2_shown #Panel_2 {
+  color: #666;
+  left: 0;
+  right: 0;
+  background-color: #EEE;
+}

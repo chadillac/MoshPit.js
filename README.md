@@ -1,4 +1,3 @@
-Backbone.Marionette.MoshPit
+MoshPit.js (WIP, more coming soon)
 ===========================
-
-Smarter views for dynamic environments.
+Controlled chaos for Views and States

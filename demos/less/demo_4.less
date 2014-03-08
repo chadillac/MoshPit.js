@@ -1,0 +1,23 @@
+@panels: 4; /* how many panels we'll support */
+
+.panels_shown_loop (@i:1) when (@i < @panels+1) {
+    /* get basic _shown styles in place */
+    #Panel_@{i} {
+        display:block;    
+    }
+    .panels_shown_loop(@i + 1);
+}
+
+/* default style for all panels */
+.panel {
+    position:absolute;
+    background-color:#000;
+    color:#FFF;
+    top:55px;
+    width:90%;
+    bottom:0;    
+    display:none;
+}
+
+.panels_shown_loop();
+
