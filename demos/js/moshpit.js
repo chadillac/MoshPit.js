@@ -87,6 +87,12 @@
                 }
             }
         },
+        marionette_hide: function() {
+            handlers.hide(util.get_namespace(this.el));
+        },
+        marionette_show: function() {
+            handlers.show(util.get_namespace(this.el));
+        },
         resize: function(evnt,stable) {
             clearTimeout(timers.resize);
             if (stable) {
@@ -112,31 +118,32 @@
         moshers:{},
         jq_funcs:false,
         add_marionette: function(Mosher) {
-            Mosher.on('show',function(){
-                handlers.show(util.get_namespace(this.el));
-            });
-            Mosher.on('close',function(){
-                handlers.hide(util.get_namespace(this.el));
-            });
+            Mosher.on('show', handlers.marionette_show);
+            Mosher.on('close', handlers.marionette_hide);
             moshpit.add_jquery.call(moshpit,$(Mosher.el));
         },
         del_marionette: function(Mosher) {
-            var namespace = String(Mosher.el).substr(1);
-            Mosher.onShow = Mosher.onShow_;
-            Mosher.close = Mosher.close_;
-            delete moshpit.moshers[namespace];
+            Mosher.off('show', handlers.marionette_show);
+            Mosher.off('close', handlers.marionette_hide);
+            moshpit.del_jquery.call(moshpit,$(Mosher.el));
         },
         add_jquery: function($Mosher) {
             var namespace = util.get_namespace($Mosher);
             if (moshpit.jq_funcs === false) {
+                // copy the origional methods so we can 
+                // swap out the defaults to patch in functionality
+                moshpit.jq_funcs = {};
+                moshpit.jq_funcs.show = $.fn.show;
                 $.fn.show = function() {
                     var namespace = util.get_namespace($(this));
                     if (moshpit.moshers[namespace]) {
                         handlers.show(namespace);
                     } else {
+                        console.log(moshpit);
                         moshpit.jq_funcs.show.apply(this,arguments);    
                     }
                 };
+                moshpit.jq_funcs.hide = $.fn.hide;
                 $.fn.hide = function() {
                     var namespace = util.get_namespace($(this));
                     if (moshpit.moshers[namespace]) {
@@ -145,6 +152,7 @@
                         moshpit.jq_funcs.show.apply(this,arguments);    
                     }
                 };    
+                moshpit.jq_funcs.toggle = $.fn.toggle;
                 $.fn.toggle = function() {
                     var namespace = util.get_namespace($(this));
                     if (moshpit.moshers[namespace]) {
@@ -155,6 +163,11 @@
                 }
             }
             moshpit.moshers[namespace] = true;
+        },
+        del_jquery: function($Mosher) {
+            var namespace = util.get_namespace($Mosher);
+            moshpit.moshers[namespace] = false;
+            handlers.hide(namespace);
         }
     };
 
@@ -179,8 +192,25 @@
                 }
             }
         },
-        leave: function() {
+        leave: function(Mosher) {
             // implement tear down
+            if (typeof Mosher == 'string') {
+                // assume this is the id, see if we can find it
+                Mosher = $('#'+util.get_namespace(Mosher));
+                if (Mosher.length) {
+                    // we found a matchin element, use it!
+                    moshpit.del_jquery.call(moshpit, Mosher);
+                }
+            } else if (typeof Mosher == 'object') {
+                if (Mosher instanceof jQuery) {
+                    moshpit.del_jquery.call(moshpit, Mosher);
+                } else if (Mosher instanceof Marionette.Region
+                           || Mosher instanceof Marionette.View
+                           || Mosher instanceof Marionette.ItemView
+                           || Mosher instanceof Marionette.Layout) {
+                    moshpit.del_marionette.call(moshpit, Mosher);
+                }
+            }
         },
         show: function(Mosher) {
             var namespace = util.get_namespace(Mosher);

@@ -25,3 +25,6 @@ $(function(){
     Demo.start();
 });
 
+function remove() {
+    MoshPit.leave(Demo.Panel_1);    
+}
