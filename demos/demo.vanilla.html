@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>MoshPit.js : Demo</title>
+        <link type="text/css" media="screen" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></link>
+        <link type="text/css" media="screen" rel="stylesheet" href="http://getbootstrap.com/examples/starter-template/starter-template.css"></link>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+
+        <!-- core -->
+        <link type="text/css" media="screen" rel="stylesheet" href="demo.css"></link>
+        <script type="text/javascript" src="js/moshpit.js"></script>
+        <script type="text/javascript" src="js/vanilla.js"></script>
+
+        <style>
+            .btns {
+                top:8px;
+                left:40%;
+                position:absolute;
+                font-size:20px;    
+            }
+            .btns button {
+                margin-right:15px;
+                float:left;    
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="http://github.com/chadillac/MoshPit.js">MoshPit.js</a>
+            </div>
+            <div class="btns">
+                <button onclick="toggle_a_panel(1);" class="Panel_2_toggle btn btn-danger">Panel 1</button>
+                <button onclick="toggle_a_panel(2);" class="Panel_2_toggle btn btn-danger">Panel 2</button>
+                <button onclick="toggle_a_panel(1);toggle_a_panel(2);" class="Panels_toggle btn btn-info">Toggle Both</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="Demo" class="container">
+          <div class="starter-template">
+            <h1>^-- click the buttons up there to toggle panels</h1>
+
+            <div class="panel" id="Panel_1">Panel 1</div>
+            <div class="panel" id="Panel_2">Panel 2</div>
+
+          </div>
+        </div>
+    </body>
+</html>
