@@ -1,8 +1,14 @@
+// MoshPit.js v0.1
+// ==
 (function($){
     'use strict';
 
     var $html,$body;
 
+    // css
+    // ===
+    // Simple lookup to allow easy configuration of CSS classes we'll use
+    // to build our shown and states classes that we'll be expecting
     var css = {
         shown:{
             prefix:"",
@@ -14,20 +20,36 @@
         }
     }
 
-    // timeout event id lookup
-    var timers = {};
-
+    // sizes
+    // ===
     // sceen sizes and their associated class names
-    // .mobile, .tablet, etc.
     var sizes = {
-        mobile:{min:0,max:400},
+        // `html.mobile`
+        mobile:{min:0,max:400},  
+        // `html.tablet`
         tablet:{min:401,max:900},
+        // `html.desktop`
         desktop:{min:901,max:1200},
+        // `html.desktop_wide`
         desktop_wide:{min:1201,max:99999999}
     };
 
-    // some simple helpers
+    // timers
+    // ===
+    // ID's of our internal timeouts to allow us
+    // to clear them if/when we need to (e.g. resize throttling)
+    var timers = {};
+
+
+    // util
+    // ===
+    // Utilities for common tasks
     var util = {
+        // `util.get_namespace`
+        // ***
+        // Get an objects namespace by testing types and doing
+        // things like removing a leading # in selectors to getting the
+        // id attr of a passed in jQuery object *(when applicable)*
         get_namespace: function(Mosher) {
             var namespace = false;
             if (Mosher instanceof jQuery) {
@@ -40,6 +62,10 @@
             }
             return namespace;
         },
+        // `util.csv_to_class`
+        // ***
+        // Convert a CSV list into a class chain that can be used with
+        // jQuery's `addClass`,`removeClass`, and `hasClass` methods
         csv_to_class: function(csv,pre,post) {
             var pre = (typeof pre != 'undefined' && pre.length) ? " "+pre : "";
             var post = (typeof post != 'undefined' && post.length) ? post+" " : "";
@@ -50,12 +76,22 @@
             csv = pre + csv + post;
             return $.trim(csv);
         },
+        // `util.shown_chain`
+        // ***
+        // Generate CSS class names for *shown* elements 
         shown_chain: function(csv_list) {
             return util.csv_to_class(csv_list,css.shown.prefix,css.shown.postfix);
         },
+        // `util.state_chain`
+        // ***
+        // Generate CSS class names for user defined states
         state_chain: function(csv_list) {
             return util.csv_to_class(csv_list,css.state.prefix,css.state.postfix);
         },
+        // `util.get_sizes_chain`
+        // ***
+        // Generate CSS class chain for various screen sizes based on 
+        // the structure of `sizes` configuration object.
         get_sizes_chain: function() {
             if (this.sizes_chain) {
                 return this.sizes_chain;
@@ -69,6 +105,11 @@
             this.sizes_chain = $.trim(sizes_chain);
             return this.sizes_chain;
         },
+        // `util.get_size`
+        // ***
+        // Test the current window size and return the name
+        // of the size that matches based on `sizes.min` and
+        // `sizes.max` configuration settings.
         get_size: function() {
             var w_w = $(window).width();
             for (var size in sizes) {
@@ -81,22 +122,40 @@
                 }
             } 
         },
+        // `util.is_shown`
+        // *** 
+        // Helper method to see if a *module* is currently displayed/shown.
         is_shown: function(namespace) {
             return $body.hasClass(util.shown_chain(namespace));
         },
+        // `util.is_state`
+        // ***
+        // Helper method to see if an application state is currently set.
         is_state: function(state) {
             return $html.hasClass(css.state.prefix + state + css.state.postfix);
         }
     };
 
-    // various internal event handlers
+    // handlers
+    // ===
+    // Various events we care about
     var handlers = {
+        // `handlers.hide`
+        // ***
+        // Hide a *module*
         hide: function(namespace) {
             $body.removeClass(util.shown_chain(namespace)); 
         },
+        // `handlers.show`
+        // ***
+        // Show a *module*
         show: function(namespace) {
             $body.addClass(util.shown_chain(namespace)); 
         },
+        // `handlers.toggle`
+        // ***
+        // Flip a *module's* view state between hidden
+        // and shown based on it's current
         toggle: function(csv_namespace) {
             csv_namespace = csv_namespace.split(',');
             for (var i=0,z=csv_namespace.length;i<z;i++) {
