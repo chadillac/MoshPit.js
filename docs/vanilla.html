@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>vanilla.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="jquery.auto.html">
+                jquery.auto.js
+              </a>
+            
+              
+              <a class="source" href="jquery.html">
+                jquery.js
+              </a>
+            
+              
+              <a class="source" href="marionette.html">
+                marionette.js
+              </a>
+            
+              
+              <a class="source" href="moshpit.html">
+                moshpit.js
+              </a>
+            
+              
+              <a class="source" href="vanilla.html">
+                vanilla.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>vanilla.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p><strong> setup on window.onload </strong>  </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>window.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Track #Panel_1 &amp; #Panel_2 with <code>MoshPit.js</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    MoshPit.join(<span class="hljs-string">'Panel_1'</span>);
+    MoshPit.join(<span class="hljs-string">'Panel_2'</span>);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p><strong> show_a_panel </strong><br>show one of our Panels</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">show_a_panel</span><span class="hljs-params">(which)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>use jQuery <code>.show</code> to make a Panel visible</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $(<span class="hljs-string">'#Panel_'</span>+which).show();    
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p><strong> hide_a_panel </strong><br>hide one of the Panels</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hide_a_panel</span><span class="hljs-params">(which)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>use <code>MoshPit.hide</code> to make a Panel hidden</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    MoshPit.hide(<span class="hljs-string">'Panel_'</span>+which);    
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p><strong> toggle_a_panel </strong><br>hide or show a panel based on it’s current shown state </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggle_a_panel</span><span class="hljs-params">(which)</span> {</span>
+    <span class="hljs-keyword">var</span> panel = <span class="hljs-string">'Panel_'</span>+which;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>see if a Panel is currently visible</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> shown = MoshPit.is_shown(panel);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>if it’s visible, we’ll use <code>hide_a_panel</code> to hide it
+if it’s not we’ll show it with <code>show_a_panel</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (shown === <span class="hljs-literal">true</span>) {
+        hide_a_panel(which); 
+    } <span class="hljs-keyword">else</span> {
+        show_a_panel(which);    
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p><strong> toggle_state </strong><br>add or remove a state based on it currently being set or not</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggle_state</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>use <code>MoshPit.toggle_state</code> to enabled the <code>horz</code> state</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    MoshPit.toggle_state(<span class="hljs-string">'horz'</span>);
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
