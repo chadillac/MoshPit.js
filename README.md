@@ -19,7 +19,7 @@ enough that designers can modify the look, feel, and behavior of the application
 4. hides some controls based on screen size <sub>4</sub>
 5. on small screens the UI works to only show 1 panel at a time <sub>5</sub>
 
-<sub>1.1 you can still use `@media` queries and I actually think you SHOULD, they were omitted to reduce confusion.</sub>
+<sub>1.1 you can still use `@media` queries and I actually think you *should*, they were omitted to reduce confusion.</sub>
 <sub>2.1 views will consume as much space as we tell them to based on what views are currently shown</sub>
 <sub>3.1 screen sizes change styles and behavior of shown elements</sub>
 <sub>4.1 the blue buttons won't be shown on screens smaller than 900px wide</sub>
