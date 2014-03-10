@@ -16,8 +16,14 @@ enough that designers can modify the look, feel, and behavior of the application
 1. adjust to screen size changes without `@media` queries <sub>1</sub>
 2. modifies view styles to deal with conflicts <sub>2</sub>
 3. let's you apply an alternative view state on large screens <sub>3</sub>
-4. hides some controls based on screen size
-5. on small screens (less than 400px) changes how the UI works to only show 1 panel at a time and hides controls accordingly
+4. hides some controls based on screen size <sub>4</sub>
+5. on small screens the UI works to only show 1 panel at a time <sub>5</sub>
+
+<sub>1.1 you can still use `@media` queries and I actually think you SHOULD, they were omitted to reduce confusion.</sub>
+<sub>2.1 views will consume as much space as we tell them to based on what views are currently shown</sub>
+<sub>3.1 screen sizes change styles and behavior of shown elements</sub>
+<sub>4.1 the blue buttons won't be shown on screens smaller than 900px wide</sub>
+<sub>5.1 we also hide controls to only show controls applicable to the current view state</sub>
 
 *note:All of these demos do the same thing, but they all do it in diffent ways.*
 
