@@ -3,7 +3,7 @@ MoshPit.js v0.1
 **Controlled chaos for your views, states, and screen sizes.**
 
 ##Elevator Pitch
-Managing your views, view states, and their conflicts across devices/screen sizes in javascript is annoying and cumbersome, so stop doing it.
+**Stop managing your views, view states, and their conflicts across devices/screen sizes in javascript**, it is annoying and cumbersome.
 
 Reduce view management logic in your javascript and let the power of LESS/CSS and MoshPit.js deal with
 views, states, and view conflict resolution.  Now make all of that easy to use and a snap to integrate into existing
