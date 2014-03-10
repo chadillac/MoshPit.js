@@ -28,37 +28,115 @@
         </ul>
       </header>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="moshpitjs-v01" class="anchor" href="#moshpitjs-v01"><span class="octicon octicon-link"></span></a>MoshPit.js v0.1</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p><strong>Controlled chaos for your views, states, and screen sizes.</strong></p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<h2>
+<a name="elevator-pitch" class="anchor" href="#elevator-pitch"><span class="octicon octicon-link"></span></a>Elevator Pitch</h2>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Managing your views, view states, and their conflicts across devices/screen sizes in javascript is annoying and cumbersome, so stop doing it.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>Reduce view management logic in your javascript and let the power of LESS/CSS and MoshPit.js deal with
+views, states, and view conflict resolution.  Now make all of that easy to use and a snap to integrate into existing
+applications and frameworks.  Make it so easy I don't need to touch a single line of javascript to use it. Now make it easy
+enough that designers can modify the look, feel, and behavior of the application without needing to change a line of code.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>
+<a name="show-me-some-demos" class="anchor" href="#show-me-some-demos"><span class="octicon octicon-link"></span></a>Show me some demos</h2>
 
 <h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a name="what-do-these-demos-do" class="anchor" href="#what-do-these-demos-do"><span class="octicon octicon-link"></span></a>What do these demos do?</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ol>
+<li>adjust to screen size changes without <code>@media</code> queries <sub>1</sub>
+</li>
+<li>modifies view styles to deal with conflicts <sub>2</sub>
+</li>
+<li>let's you apply an alternative view state on large screens <sub>3</sub>
+</li>
+<li>hides some controls based on screen size <sub>4</sub>
+</li>
+<li>on small screens the UI works to only show 1 panel at a time <sub>5</sub>
+</li>
+</ol><p><sub>1.1 you can still use <code>@media</code> queries and I actually think you <em>should</em>, they were omitted to reduce confusion.</sub><br><sub>2.1 views will consume as much space as we tell them to based on what views are currently shown</sub><br><sub>3.1 screen sizes change styles and behavior of shown elements</sub><br><sub>4.1 the blue buttons won't be shown on screens smaller than 900px wide</sub><br><sub>5.1 we also hide controls to only show controls applicable to the current view state</sub></p>
+
+<p><em>note: all of these demos do the same thing, but they all do it in diffent ways using various javascript implementations.</em></p>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="no-javascript-demo" class="anchor" href="#no-javascript-demo"><span class="octicon octicon-link"></span></a><a href="http://chadillac.github.io/MoshPit.js/demos/demo.html">no javascript demo</a>
+</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p><del>javascript</del> | <a href="https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.html">html</a><br>
+This demo requires no javascript to be written.  It utilizes <code>data-moshpit</code> on HTML elements with 
+<code>data-view</code> and <code>data-state</code> to tell <code>MoshPit.js</code> when and what it should be doing with a view.<br><em>note: yes, it still requires javascript, but no additional javascript needed to be written to use <code>MoshPit.js</code></em></p>
+
+<h3>
+<a name="vanilla-demo" class="anchor" href="#vanilla-demo"><span class="octicon octicon-link"></span></a><a href="http://chadillac.github.io/MoshPit.js/demos/demo.vanilla.html">vanilla demo</a>
+</h3>
+
+<p><a href="http://chadillac.github.io/MoshPit.js/docs/vanilla.html">javascript</a>
+ | 
+<a href="https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.vanilla.html">html</a><br>
+This demo uses basic design patterns found in most applications, it uses <code>MoshPit.js</code> via it's global namespace 
+from globally available functions.</p>
+
+<h3>
+<a name="jquery-demo" class="anchor" href="#jquery-demo"><span class="octicon octicon-link"></span></a><a href="http://chadillac.github.io/MoshPit.js/demos/demo.jquery.html">jquery demo</a>
+</h3>
+
+<p><a href="http://chadillac.github.io/MoshPit.js/docs/jquery.html">javascript</a>
+ | 
+<a href="https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.jquery.html">html</a><br>
+This demo uses generic/common jQuery implementations and jQuery <code>.on</code> events to communicate with <code>MoshPit.js</code> and
+operates inside of a privately scoped closure but relies on <code>MoshPit.js</code> global namespace.</p>
+
+<h3>
+<a name="jqueryauto-demo" class="anchor" href="#jqueryauto-demo"><span class="octicon octicon-link"></span></a><a href="http://chadillac.github.io/MoshPit.js/demos/demo.jquery.auto.html">jquery.auto demo</a>
+</h3>
+
+<p><a href="http://chadillac.github.io/MoshPit.js/docs/jquery.auto.html">javascript</a>
+ | 
+<a href="https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.jquery.auto.html">html</a><br>
+This demo uses jQuery but it utilizes <code>MoshPit.join</code> to automate the tracking/handling of it's views.  It also
+operates inside of a privately scoped closure and does not rely on the <code>MoshPit</code> global beyond the initial <code>.join</code>
+call to enable automated tracking/management.</p>
+
+<h3>
+<a name="marionette-demo" class="anchor" href="#marionette-demo"><span class="octicon octicon-link"></span></a><a href="http://chadillac.github.io/MoshPit.js/demos/demo.marionette.html">marionette demo</a>
+</h3>
+
+<p><a href="http://chadillac.github.io/MoshPit.js/docs/marionette.html">javascript</a>
+ | 
+<a href="https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.marionette.html">html</a><br>
+This demo uses <code>Marionette</code> <code>Region</code>s and <code>ItemView</code>s and shows intergration with them via <code>MoshPit.join</code>.<br><em>note: all of the other design patterns listed above can be used with <code>Marionette</code> design patterns too... if you're into that kind of thing.</em></p>
+
+<h2>
+<a name="lets-talk-some-code" class="anchor" href="#lets-talk-some-code"><span class="octicon octicon-link"></span></a>Let's talk some code.</h2>
+
+<p>As said all of our view management (position, size, colors, etc.) is all handled in CSS (where it should be!) and
+relies on inheritence, chaining, and cascading to deal with conflicts.  With CSS it's a lot of extra typing (but possible
+if you're a masochist).  Using LESS however we greatly reduce the amount of code we have to write and we get nesting
+and chaining in a very intuitive format.  </p>
+
+<h3>
+<a name="less-file-used-in-all-of-the-demos" class="anchor" href="#less-file-used-in-all-of-the-demos"><span class="octicon octicon-link"></span></a><a href="http://github.com/chadillac/MoshPit.js/blob/master/demos/less/demo.less">LESS file used in all of the demos</a>
+</h3>
+
+<p>This is the LESS file that was parsed via <code>lessc</code> to produce the final CSS file used in all of the demos.</p>
+
+<h3>
+<a name="css-file-used-in-all-of-the-demos" class="anchor" href="#css-file-used-in-all-of-the-demos"><span class="octicon octicon-link"></span></a><a href="https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.css">CSS file used in all of the demos</a>
+</h3>
+
+<p>This is the results from the LESS file above after processing with <code>lessc</code>.</p>
+
+<h3>
+<a name="annotated-source-of-moshpitjs" class="anchor" href="#annotated-source-of-moshpitjs"><span class="octicon octicon-link"></span></a><a href="http://chadillac.github.io/MoshPit.js/docs/moshpit.html">Annotated source of MoshPit.js</a>
+</h3>
+
+<p>This is an annotated version of the source code.<br><em>note: <a href="http://jashkenas.github.io/docco/">docco is awesome.</a></em></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/chadillac">chadillac</a></p>
