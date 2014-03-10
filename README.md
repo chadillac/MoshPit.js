@@ -1,4 +1,4 @@
-MoshPit.js v0.1 [WIP]
+MoshPit.js v0.1
 ===========================
 **Controlled chaos for your views, states, and screen sizes.**
 
