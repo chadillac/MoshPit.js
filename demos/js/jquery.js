@@ -13,7 +13,7 @@
             // with `MoshPit`.  
             // *note: if you're not tracking views with `MoshPit.join` 
             // calls to `$.show`,`$.hide`,`$.toggle` will not notify
-            // `MoshPit.js` of changes in the view state.
+            // `MoshPit.js` of changes in the view state.*
             $('body').on('click','.Panel_1_toggle',function(){
                 MoshPit.toggle(gui.elems.$Panel_1);
             });
