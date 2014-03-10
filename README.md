@@ -13,6 +13,10 @@ enough that designers can modify the look, feel, and behavior of the application
 ##Show me some demos
 ###What do these demos do?
 
+*note: all of these demos do the same thing, but they all do it in diffent ways using various javascript implementations.*
+
+*note: make sure you resize your browser and flip panels around to see how they cope.*
+
 1. adjust to screen size changes without `@media` queries <sub>1</sub>
 2. modifies view styles to deal with conflicts <sub>2</sub>
 3. let's you apply an alternative view state on large screens <sub>3</sub>
@@ -24,8 +28,6 @@ enough that designers can modify the look, feel, and behavior of the application
 <sub>3.1 screen sizes change styles and behavior of shown elements</sub>  
 <sub>4.1 the blue buttons won't be shown on screens smaller than 900px wide</sub>  
 <sub>5.1 we also hide controls to only show controls applicable to the current view state</sub>  
-
-*note: all of these demos do the same thing, but they all do it in diffent ways using various javascript implementations.*
 
 ###[no javascript demo](http://chadillac.github.io/MoshPit.js/demos/demo.html)
 ~~javascript~~ | [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.html)  
