@@ -1,6 +1,6 @@
 MoshPit.js v0.1 [WIP]
 ===========================
-**Controlled chaos for your ~~responsive~~ web application views, states, and screen sizes.**
+**Controlled chaos for your views, states, and screen sizes.**
 
 ##Elevator Pitch
 Managing your views, view states, and their conflicts across devices/screen sizes in javascript is annoying and cumbersome, so stop doing it.
