@@ -11,7 +11,7 @@ applications and frameworks.  Make it so easy I don't need to touch a single lin
 enough that designers can modify the look, feel, and behavior of the application without needing to change a line of code.
 
 ##Show me some demos
-###What does this demo do?
+###What do these demo do?
 
 1. adjust to screen size changes without `@media` queries <sub>1</sub>
 2. modifies view styles to deal with conflicts <sub>2</sub>
