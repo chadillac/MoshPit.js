@@ -1,3 +1,3 @@
 MoshPit.js [WIP]
 ===========================
-Controlled chaos for Views and States
+Controlled chaos for your web ~~responsive~~ application views, states, and screen sizes.

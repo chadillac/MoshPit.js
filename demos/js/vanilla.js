@@ -22,6 +22,7 @@ function toggle_a_panel(which) {
     }
 }
 
-function remove() {
-    MoshPit.leave('Panel_1');    
+function toggle_state() {
+    MoshPit.toggle_state('horz');
 }
+

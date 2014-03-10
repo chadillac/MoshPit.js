@@ -2,6 +2,7 @@
 // ===
 // **v0.1**
 // ***
+//
 // <http://chadillac.github.io/MoshPit.js>
 //
 // Copyright (c)2014 Chad Seaman. Distributed under 
@@ -24,11 +25,8 @@
     // **css class configuration**  
     // `css`
     //
-    // Simple lookup to allow easy configuration of CSS classes we'll use
-    // to build our `_shown` and `state_` classes that we'll be expecting
-    // for given actions.
-    //
-    // e.g. `Example_shown`, `state_ExampleState`
+    // Configuration object for CSS classes that will be generated when we 
+    // build our `_shown` and `state_` class chains in their respective `util` methods.
     var css = {
         shown:{
             prefix:"",
@@ -55,7 +53,7 @@
         desktop_wide:{min:1201,max:99999999}
     };
 
-    // **timeoue ID storage/mapping**  
+    // **setTimeout ID storage/mapping**  
     // `timers`
     //
     // Store ID's of our internal timeouts by name to allow us
@@ -208,7 +206,7 @@
         // We'll need to store functions for `$.show`, `$.hide`
         // and `$.toggle` that we can use in our own functions
         // we'll replace in jQuery.
-        jquery_funcs:{},
+        jquery_funcs:false,
         // **copy jQuery default methods, inject our modified versions**  
         // `util.jquery_inject`
         //
@@ -391,11 +389,17 @@
         click: function(evnt) {
             var $clicked = $(evnt.currentTarget);
             var action = $clicked.data('moshpit');
-            var namespace = $clicked.data('view');
-
-            if (typeof handlers[action] != 'undefined') {
-                handlers[action](namespace);
-                evnt.preventDefault(); // assume we want to stop the default, allow propagation.
+            var view = $clicked.data('view');
+            var state = $clicked.data('state');
+            if (view || state) {
+                if (typeof handlers[action] != 'undefined') {
+                    if (state) {
+                        handlers[action](state);
+                    } else {
+                        handlers[action](view);
+                    }
+                    evnt.preventDefault();
+                }
             }
         }
     };
@@ -409,7 +413,7 @@
     // automated tracking of elements that use `MoshPit.join`
     // and `MoshPit.leave`.
     var moshpit = {
-        // **Store tracked namespaces**  
+        // **Tracked views/namespaces lookup**  
         // `moshpit.views`
         //
         // A lookup object we'll use to test events from
@@ -419,7 +423,7 @@
         // **Setup a tracked Marionette component**  
         // `moshpit.add_marionette`  
         // 
-        // Marionette components have their own event system  via `Wreqr` for
+        // Marionette components have their own event system  via `Marionette.Wreqr` for
         // tracking `.hide`,`.show`,`.close` events.  We'll utilize them
         // to ease integration before setting up our jQuery tracking
         // for the *view* `el` as well.
@@ -445,9 +449,9 @@
         // We'll rely on jQuery for tracking *view* changes that come in
         // via `.show`, `.hide`, and `.toggle`.  
         add_jquery: function($view) {
+            util.jquery_inject(); // ensure we intergrate ourselves into jquery
             var namespace = util.get_namespace($view);
             moshpit.views[namespace] = true;
-            util.jquery_inject(); // ensure we intergrate ourselves into jquery
         },
         // **Remove a tracking from a *view***  
         // `moshpit.del_jquery`
@@ -542,8 +546,7 @@
         //     }
         //     // <body class="example_shown">
         show: function(view) {
-            var namespace = util.get_namespace(view);
-            handlers.show(namespace);            
+            handlers.show(util.get_namespace(view));            
         },
         // **manually hide a *view***  
         // `MoshPit.hide`
@@ -572,32 +575,6 @@
         toggle: function(view) {
             handlers.toggle(util.get_namespace(view));
         },
-        // **add a *view state***  
-        // `MoshPit.add_state`
-        //
-        // Applies a *view state* to the current page.
-        //
-        //     // <html>
-        //     MoshPit.add_state('highlight_all_examples');
-        //     // <html class="state_highlight_all_examples">
-        //
-        // *note: states are useful for modifying multiple 
-        // *views* and allows for simplier LESS structures and
-        // less (as LoC) generated CSS*
-        add_state: function(state) {
-            handlers.add_state(state);
-        },
-        // **remove a *view state***  
-        // `MoshPit.remove_state`
-        //
-        // Removes a *view state* from the current page.
-        //
-        //     // <html class="state_highlight_all_examples">
-        //     MoshPit.remove_state('highlight_all_examples");
-        //     // <html class="">
-        remove_state: function(state) {
-            handlers.del_state(state);
-        },
         // **check if a *view* is shown**  
         // `MoshPit.is_shown`
         //
@@ -612,17 +589,63 @@
         //     MoshPit.is_shown('example');
         //     > false
         is_shown: function(view) {
-            var namespace = util.get_namespace(view);    
-            return util.is_shown(namespace);
-        }
+            return util.is_shown(util.get_namespace(view));
+        },
+        // **add a *view state***  
+        // `MoshPit.add_state`
+        //
+        // Applies a *view state* to the entire page.
+        //
+        //     // <html>
+        //     MoshPit.add_state('highlight_all_examples');
+        //     // <html class="state_highlight_all_examples">
+        //
+        // *note: states are useful for modifying multiple 
+        // *views* and allows for simplier LESS structures and
+        // less (as in LoC) generated CSS*
+        add_state: handlers.add_state,
+        // **remove a *view state***  
+        // `MoshPit.remove_state`
+        //
+        // Removes a *view state* from the entire page.
+        //
+        //     // <html class="state_highlight_all_examples">
+        //     MoshPit.remove_state('highlight_all_examples");
+        //     // <html class="">
+        remove_state: handlers.del_state,
+        // **toggle a *view state***  
+        // `MoshPit.toggle_state`
+        //
+        // Toggles a *view state* on the entire page.
+        //
+        //     // <html>
+        //     MoshPit.toggle_state('highlight_all_examples");
+        //     // <html class="state_highlight_all_examples">
+        //     MoshPit.toggle_state('highlight_all_examples");
+        //     // <html class="">
+        toggle_state: handlers.toggle_state,
+        // **check if a *view state* is enabled**  
+        // `MoshPit.is_state`
+        //
+        // Externally accessible means to find out if a
+        // *view state* is currently active.
+        //
+        //     // <html class="state_highlight_all_examples">
+        //     MoshPit.is_state("highlight_all_examples");
+        //     > true
+        //     // <html class="">
+        //     MoshPit.is_state("highlight_all_examples");
+        //     > false
+        is_state: util.is_state
+        //
     };
 
     // ## initialization steps
     // ***
     // `init`
     //
-    // Steps we'll need to take when on `domready` and 
-    // hooking our init method into jQuery's `$.ready` event.
+    // Steps we'll need to take on `domready`.  
+    // Hook init into jQuery's `$.ready` event.
     var init = function() {
         handlers.resize();
         $html = $('html');
@@ -630,7 +653,6 @@
         $(window).on('resize', handlers.resize);
         $(document).on('click','[data-moshpit]', handlers.click);     
     };
-    $.ready(init);
-
+    $(init);
 //
 })(jQuery);
