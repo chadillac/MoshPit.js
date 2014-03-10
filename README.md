@@ -24,7 +24,7 @@ enough that designers can modify the look, feel, and behavior of the application
 ###[no javascript demo](http://chadillac.github.io/MoshPit.js/demos/demo.html)
 ~~javascript~~ | [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.html)  
 This demo requires no javascript to be written.  It utilizes `data-moshpit` on HTML elements with 
-`data-view` and `data-state` to tell `MoshPit.js` when and what it should be doing with a view.
+`data-view` and `data-state` to tell `MoshPit.js` when and what it should be doing with a view.  
 *note: yes, it still requires javascript, but no additional javascript needed to be written to use `MoshPit.js`*
 
 ###[vanilla demo](http://chadillac.github.io/MoshPit.js/demos/demo.vanilla.html)
@@ -53,7 +53,7 @@ call to enable automated tracking/management.
 [javascript](https://github.com/chadillac/MoshPit.js/blob/master/demos/js/marionette.js)
  | 
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.marionette.html) 
-This demo uses `Marionette` `Region`s and `ItemView`s and shows intergration with them via `MoshPit.join`.
+This demo uses `Marionette` `Region`s and `ItemView`s and shows intergration with them via `MoshPit.join`.  
 *note: all of the other design patterns listed above can be used with `Marionette` design patterns too... if you're into that kind of thing.*
 
 
@@ -70,5 +70,5 @@ This is the LESS file that was parsed via `lessc` to produce the final CSS file 
 This is the results from the LESS file above after processing with `lessc`.
 
 ###[Annotated source of MoshPit.js](http://chadillac.github.io/MoshPit.js/docs/moshpit.html)
-This is an annotated version of the source code.
+This is an annotated version of the source code.  
 *note: [docco is awesome.](http://jashkenas.github.io/docco/)**
