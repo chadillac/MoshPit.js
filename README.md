@@ -13,22 +13,23 @@ enough that designers can modify the look, feel, and behavior of the application
 ##Show me some demos
 *note:All of these demos do the same thing, but they all do it in diffent ways.*
 
-[no javascript demo](http://chadillac.github.io/MoshPit.js/demos/demo.html)  
+[no javascript demo](http://chadillac.github.io/MoshPit.js/demos/demo.html)
+---
 This demo requires no javascript to be written.  It utilizes `data-moshpit` on HTML elements with 
 `data-view` and `data-state` to tell `MoshPit.js` when and what it should be doing with a view.
 *note: yes, it still requires javascript, but no additional javascript needed to be written to use `MoshPit.js`*
 
-[vanilla demo](http://chadillac.github.io/MoshPit.js/demos/demo.vanilla.html)  
+###[vanilla demo](http://chadillac.github.io/MoshPit.js/demos/demo.vanilla.html)
 This demo uses basic design patterns found in most applications, it uses `MoshPit.js` via it's global namespace 
 from globally available functions.
 
-[jquery demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.html)  
+###[jquery demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.html)
 This demo uses generic/common jQuery implementations and jQuery `.on` events to communicate with `MoshPit.js`
 
-[jquery.auto demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.auto.html)  
+###[jquery.auto demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.auto.html)
 This demo uses jQuery but it utilizes `MoshPit.join` to automate the tracking/handling of it's views.
 
-[Marionette demo](http://chadillac.github.io/MoshPit.js/demos/demo.marionette.html)  
+###[Marionette demo](http://chadillac.github.io/MoshPit.js/demos/demo.marionette.html)
 This demo uses `Marionette` `Region`s and `ItemView`s and shows intergration with them via `MoshPit.join`.
 *note: all of the other design patterns listed above can be used with `Marionette` design patterns too... if you're into that kind of thing.*
 
