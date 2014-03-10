@@ -1,7 +1,7 @@
 // create our Demo Marionette application
 Demo = new Backbone.Marionette.Application();
 
-// sreate our `PanelView` class that we'll use in our Regions
+// create our `PanelView` class that we'll use in our Regions
 PanelView = Backbone.Marionette.ItemView.extend({
     initialize: function(options) {
         self = this;
@@ -24,10 +24,10 @@ PanelRegion = Backbone.Marionette.Region.extend({
 
 // on `$.ready` hook everything up
 $(function(){
-    // create our new `PanelRegion`s that target #Panel_1 & #Panel_2
+    // create our new `PanelRegion`instances that target #Panel_1 & #Panel_2
     Demo.Panel_1 = new PanelRegion({el:"#Panel_1"});
     Demo.Panel_2 = new PanelRegion({el:"#Panel_2"});
-    // load our Regions up with `PanelView`s
+    // load our Regions up with `PanelView` instances
     Demo.Panel_1.show(new PanelView({name:"Panel 1"}));
     Demo.Panel_2.show(new PanelView({name:"Panel 2"}));
     // Start our application up

@@ -63,7 +63,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p><strong> setup on window.onload </strong>  </p>
+              <p>setup on window.onload </p>
 
             </div>
             
@@ -95,7 +95,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p><strong> show_a_panel </strong><br>show one of our Panels</p>
+              <p>show one of the Panels</p>
 
             </div>
             
@@ -126,7 +126,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p><strong> hide_a_panel </strong><br>hide one of the Panels</p>
+              <p>hide one of the Panels</p>
 
             </div>
             
@@ -157,7 +157,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p><strong> toggle_a_panel </strong><br>hide or show a panel based on it’s current shown state </p>
+              <p>hide or show a panel based on it’s current shown state </p>
 
             </div>
             
@@ -177,7 +177,9 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> shown = MoshPit.is_shown(panel);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> shown = MoshPit.is_shown(panel);
+
+    <span class="hljs-keyword">if</span> (shown === <span class="hljs-literal">true</span>) {</pre></div></div>
             
         </li>
         
@@ -188,17 +190,12 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>if it’s visible, we’ll use <code>hide_a_panel</code> to hide it
-if it’s not we’ll show it with <code>show_a_panel</code></p>
+              <p>hide it if it’s currently shown</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (shown === <span class="hljs-literal">true</span>) {
-        hide_a_panel(which); 
-    } <span class="hljs-keyword">else</span> {
-        show_a_panel(which);    
-    }
-}</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        hide_a_panel(which); 
+    } <span class="hljs-keyword">else</span> {</pre></div></div>
             
         </li>
         
@@ -209,11 +206,13 @@ if it’s not we’ll show it with <code>show_a_panel</code></p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p><strong> toggle_state </strong><br>add or remove a state based on it currently being set or not</p>
+              <p>show it if it’s not shown</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggle_state</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        show_a_panel(which);    
+    }
+}</pre></div></div>
             
         </li>
         
@@ -223,6 +222,21 @@ if it’s not we’ll show it with <code>show_a_panel</code></p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>add or remove a state based on it currently being set or not</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggle_state</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>use <code>MoshPit.toggle_state</code> to enabled the <code>horz</code> state</p>
 
