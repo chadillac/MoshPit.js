@@ -34,20 +34,20 @@ This demo requires no javascript to be written.  It utilizes `data-moshpit` on H
 *note: yes, it still requires javascript, but no additional javascript needed to be written to use `MoshPit.js`*
 
 ###[vanilla demo](http://chadillac.github.io/MoshPit.js/demos/demo.vanilla.html)
-[javascript](https://github.com/chadillac/MoshPit.js/blob/master/demos/js/vanilla.js)
+[javascript](http://chadillac.github.io/MoshPit.js/docs/vanilla.html)
  | 
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.vanilla.html)  
 This demo uses basic design patterns found in most applications, it uses `MoshPit.js` via it's global namespace 
 from globally available functions.
 
-###[jquery demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.html)
+###[jquery demo](http://chadillac.github.io/MoshPit.js/docs/jquery.html)
 [javascript](https://github.com/chadillac/MoshPit.js/blob/master/demos/js/jquery.js)
  | 
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.jquery.html)   
 This demo uses generic/common jQuery implementations and jQuery `.on` events to communicate with `MoshPit.js` and
 operates inside of a privately scoped closure but relies on `MoshPit.js` global namespace.
 
-###[jquery.auto demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.auto.html)
+###[jquery.auto demo](http://chadillac.github.io/MoshPit.js/docs/jquery.auto.html)
 [javascript](https://github.com/chadillac/MoshPit.js/blob/master/demos/js/jquery.auto.js)
  | 
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.jquery.auto.html)  
@@ -55,7 +55,7 @@ This demo uses jQuery but it utilizes `MoshPit.join` to automate the tracking/ha
 operates inside of a privately scoped closure and does not rely on the `MoshPit` global beyond the initial `.join`
 call to enable automated tracking/management.
 
-###[Marionette demo](http://chadillac.github.io/MoshPit.js/demos/demo.marionette.html)
+###[marionette demo](http://chadillac.github.io/MoshPit.js/docs/marionette.html)
 [javascript](https://github.com/chadillac/MoshPit.js/blob/master/demos/js/marionette.js)
  | 
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.marionette.html)  
