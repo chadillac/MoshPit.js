@@ -644,8 +644,8 @@
     // ***
     // `init`
     //
-    // Steps we'll need to take when on `domready` and 
-    // hooking our init method into jQuery's `$.ready` event.
+    // Steps we'll need to take on `domready`.  
+    // Hook init into jQuery's `$.ready` event.
     var init = function() {
         handlers.resize();
         $html = $('html');
