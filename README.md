@@ -13,8 +13,7 @@ enough that designers can modify the look, feel, and behavior of the application
 ##Show me some demos
 *note:All of these demos do the same thing, but they all do it in diffent ways.*
 
-[no javascript demo](http://chadillac.github.io/MoshPit.js/demos/demo.html)
----
+###[no javascript demo](http://chadillac.github.io/MoshPit.js/demos/demo.html)
 This demo requires no javascript to be written.  It utilizes `data-moshpit` on HTML elements with 
 `data-view` and `data-state` to tell `MoshPit.js` when and what it should be doing with a view.
 *note: yes, it still requires javascript, but no additional javascript needed to be written to use `MoshPit.js`*
