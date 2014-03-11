@@ -65,6 +65,25 @@ Yep, just leave the pit, brah.
 
      MoshPit.leave('my_view');
 
+###Can I chain the things?
+
+Kind of, we're no jQuery, but you can chain *some* functionality... this will improve.
+
+     // join and show
+     MoshPit.join('#my_view_1,#my_view_2,#my_view_3').show('#my_view_1,#my_view_3');
+     
+     // show and hide
+     MoshPit.show('#my_view_1,#my_view3').hide('#my_view_2');
+     
+     // join and leave
+     MoshPit.join('#my_view_1').leave('#my_view_3');
+     
+     // add some states, remove some states.
+     MoshPit.add_state('my,states,here').remove('buh,bye,old_states');
+     
+     // remove states, and show a sign up page
+     MoshPit.remove_state('full_screen,lower_lights').show('sign_up_splash');
+
 ###Wait a second, I thought you said I didn't have to use JavaScript!?
 
 `MoshPit` monitors the DOM for click events, if you use these HTML data attributes, users clicks will be caught and processed 
