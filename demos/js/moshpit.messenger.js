@@ -97,7 +97,6 @@ var DetailsDisplay = Backbone.View.extend({
             this.elems.$message_details = $('#message_details');
             this.elems.$threads = $('#threads');
 
-            // backbone views
             this.elems.ThreadList = new ThreadList({
                     el:"#threads_list",
                     collection:data.InboxCollection,
