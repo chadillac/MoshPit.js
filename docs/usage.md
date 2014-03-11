@@ -92,7 +92,7 @@ By default we notify you of 4 layouts.
     .desktop
     .desktop_wide
 
-Currently I you have to customize them directly in the MoshPit declaration, it's ugly... but you'll be able to provide a custom list of sizes and states that you expect to be used in the very near future.
+Currently you have to customize them directly in the MoshPit source, it's ugly... but you'll be able to provide a custom list of sizes and states that you expect to be used in the very near future.  The github repo includes a [build bash script](https://github.com/chadillac/MoshPit.js/tree/master/build) (Linux, it's pretty great.) for minifying the source via uglify-js if you need to modify the sizes and want a minified version for production.
 
 ###Okay, but I don't really know LESS all that well...
 
