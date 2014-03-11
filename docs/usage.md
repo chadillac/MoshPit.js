@@ -67,8 +67,8 @@ Yep, just leave the pit, brah.
 
 ###Wait a second, I thought you said I didn't have to use JavaScript!?
 
-`MoshPit` monitors the DOM for click events, if you use these HTML data attributes, you clicks will be caught and processed 
-by `MoshPit` (handy for dynamic views, allows you to link functionality between components without needing JS communications).
+`MoshPit` monitors the DOM for click events, if you use these HTML data attributes, users clicks will be caught and processed 
+by `MoshPit` (handy for dynamic views, allows you to link functionality between components without needing JS communications, affect multiple views with a single HTML interaction, etc).
 
 **data-moshpit="[method name]" data-view="[the view]"**  
 **data-moshpit="[method name]" data-state="[the state]"**  
