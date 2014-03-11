@@ -66,7 +66,7 @@ var MessagesDisplay = Backbone.View.extend({
                 html_out += '<span>'+(a_msg.direction == 'TO' ? 'sent ' : 'recv\'d')+' @ '+a_msg.time+'</span>';
                 html_out += '</div>';
             }
-            this.$el.empty().html(html_out);
+            this.$el.empty().html(html_out).scrollTop(0);
             return this;
         }
     });
@@ -86,6 +86,7 @@ var DetailsDisplay = Backbone.View.extend({
             this.$el.find('.sender_detail > .real_name').text(this.model.get('sender_name'));
             this.$el.find('.sender_detail > .sender_address').text(this.model.get('sender_address'));
             this.$el.find('.recv_time').text('last activity @ '+l_msg.time);
+            return this;
         }
     });
 
@@ -102,7 +103,7 @@ var DetailsDisplay = Backbone.View.extend({
                     el:"#threads_list",
                     collection:data.InboxCollection,
                     clicked:events.change_active
-                });
+                }).render();
 
             this.elems.MessagesDisplay = new MessagesDisplay({
                     el:'#message_content_messages'
@@ -119,7 +120,6 @@ var DetailsDisplay = Backbone.View.extend({
     var events = {
         change_active: function(new_model) {
             data.ActiveConversation = new_model; 
-            gui.elems.ThreadList.render();
             gui.elems.DetailsDisplay.change_model(data.ActiveConversation);
             gui.elems.MessagesDisplay.change_model(data.ActiveConversation);
         }
