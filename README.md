@@ -11,7 +11,21 @@ applications and frameworks.  Make it so easy I don't need to touch a single lin
 enough that designers can modify the look, feel, and behavior of the application without needing to change a line of code.
 
 ##Show me some demos
-###What do these demos do?
+###Advanced Demo
+
+[MoshPit Messenger demo](http://chadillac.github.io/MoshPit.js/demos/moshpit.messenger.html)
+===
+[javascript](http://chadillac.github.io/MoshPit.js/docs/moshpit.messenger.html)
+ | 
+[html](https://github.com/chadillac/MoshPit.js/blob/master/demos/moshpit.messenger.html)  
+This demo uses all of the features of `MoshPit.js` to build a mock messaging platform.  It uses `Backbone` for
+`Views`, `Models`, and `Collections` as well as generating data every time you start it up.  It has 2 user defined
+states that you can use (one will make you hate yourself) and changes it's layout and functionality when
+dropping to a mobile/tablet mode.  It also has elements that are all dependent on one another for their own 
+view state.  90% of the code is application code so I only highligthed the lines where `MoshPit.js` comes into play.
+
+###Simple Demos
+###3What do these demos do?
 
 *note: all of these demos do the same thing, but they all do it in diffent ways using various javascript implementations.*
 
@@ -63,7 +77,6 @@ call to enable automated tracking/management.
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.marionette.html)  
 This demo uses `Marionette` `Region`s and `ItemView`s and shows intergration with them via `MoshPit.join`.  
 *note: all of the other design patterns listed above can be used with `Marionette` design patterns too... if you're into that kind of thing.*
-
 
 ##Let's talk some code.
 As said all of our view management (position, size, colors, etc.) is all handled in CSS (where it should be!) and
