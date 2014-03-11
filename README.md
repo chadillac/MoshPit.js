@@ -8,7 +8,7 @@ MoshPit.js v0.1
 Reduce view management logic in your javascript and **let the power of LESS/CSS and MoshPit.js deal with
 views, states, and view conflict resolution**.  Now make all of that easy to use and a snap to **integrate into existing
 applications and frameworks**.  Make it **so easy I don't need to touch a single line of javascript to use it**. Now make it easy
-enough that **designers can modify the look, feel, and behavior of the application without needing to change a line of code**.
+enough that **designers can modify the look, feel, *and behavior* of the application without needing to change a line of code**.
 
 ##Show me some demos
 ###Advanced Demo
