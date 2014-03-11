@@ -5,7 +5,7 @@ MoshPit.js v0.1
 ##Elevator Pitch
 **Stop managing your views, view states, and their conflicts across states/devices/sizes in javascript**, it is annoying and cumbersome.
 
-Reduce view management logic in your javascript and **let the power of LESS/CSS and MoshPit.js deal with
+**Reduce view management logic in your javascript** and **let the power of LESS/CSS and MoshPit.js deal with
 views, states, and view conflict resolution**.  Now make all of that easy to use and a snap to **integrate into existing
 applications and frameworks**.  Make it **so easy you don't need to touch a single line of javascript to use it**. Now make it easy
 enough that **designers can modify the look, feel, *and behavior* of the application without needing to change a line of code**.
