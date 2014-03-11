@@ -109,6 +109,23 @@
             csv = pre + csv + post;
             return $.trim(csv);
         },
+        // **exec a func for each item of a CSV**  
+        // `util.exec_on_csv`
+        //
+        // Process a CSV list, execute our `action` using
+        // each item of the list as the passed in param
+        //
+        //     // <body>
+        //     util.exec_on_csv('list,of,things', handlers.show);
+        //     > 'list_shown of_shown things_shown'
+        exec_on_csv: function(csv,action) {
+            var csv = csv.replace(' ','').split(',');
+            for (var i=0,len=csv.length; i<len; i++) {
+                var item = csv[i];
+                var view = $('#'+util.get_namespace(item));
+                action.call(moshpit,view);    
+            }
+        },
         // **generate *shown* classes**  
         // `util.shown_chain`
         //
@@ -117,6 +134,7 @@
         //     util.shown_chain('list,of,things');
         //     > 'list_shown of_shown things_shown'
         shown_chain: function(csv_list) {
+            csv_list = csv_list.replace(/#/g,'');
             return util.csv_to_class(csv_list,css.shown.prefix,css.shown.postfix);
         },
         // **generate *state* classes**  
@@ -127,6 +145,7 @@
         //     util.state_chain('list,of,things');
         //     > 'state_list state_of state_things'
         state_chain: function(csv_list) {
+            csv_list = csv_list.replace(/#/g,'');
             return util.csv_to_class(csv_list,css.state.prefix,css.state.postfix);
         },
         // **generate *size* classes**  
@@ -294,15 +313,11 @@
         //     //<body class="example_shown">
         //     handlers.toggle('example');
         //     //<body class="">
-        toggle: function(csv_namespace) {
-            csv_namespace = csv_namespace.split(',');
-            for (var i=0,z=csv_namespace.length;i<z;i++) {
-                var namespace = $.trim(csv_namespace[i]);
-                if (util.is_shown(namespace)) {
-                    handlers.hide(namespace);
-                } else {
-                    handlers.show(namespace);    
-                }
+        toggle: function(namespace) {
+            if (util.is_shown(namespace)) {
+                handlers.hide(namespace);
+            } else {
+                handlers.show(namespace);    
             }
         },
         // **hide a Marionette component**  
@@ -488,13 +503,7 @@
         //     // <body class="example_shown">
         join: function(view) {
             if (typeof view == 'string') {
-                view = view.replace(' ','').split(',');
-                for (var vi=0,vl=view.length;vi<vl;vi++) {
-                    var a_view = $('#'+util.get_namespace(view[vi]));
-                    if (a_view.length) {
-                        moshpit.add_jquery.call(moshpit, a_view);
-                    }
-                }
+                    util.exec_on_csv(view, moshpit.add_jquery);
             } else if (typeof view == 'object') {
                 if (view instanceof jQuery) {
                     moshpit.add_jquery.call(moshpit, view);
@@ -523,10 +532,7 @@
         //     // <body class="">
         leave: function(view) {
             if (typeof view == 'string') {
-                view = $('#'+util.get_namespace(view));
-                if (view.length) {
-                    moshpit.del_jquery.call(moshpit, view);
-                }
+                    util.exec_on_csv(view, moshpit.del_jquery);
             } else if (typeof view == 'object') {
                 if (view instanceof jQuery) {
                     moshpit.del_jquery.call(moshpit, view);
@@ -551,7 +557,7 @@
         //     }
         //     // <body class="example_shown">
         show: function(view) {
-            handlers.show(util.get_namespace(view));            
+            handlers.show(view);
             return MoshPit;
         },
         // **manually hide a *view***  
@@ -566,7 +572,7 @@
         //     }
         //     // <body class="">
         hide: function(view) {
-            handlers.hide(util.get_namespace(view));
+            handlers.hide(view);
             return MoshPit;
         },
         // **manually toggle a *view***  
@@ -580,7 +586,7 @@
         //     MoshPit.toggle('example');
         //     // <body class="">
         toggle: function(view) {
-            handlers.toggle(util.get_namespace(view));
+            util.exec_on_csv(view, handlers.toggle);
             return MoshPit;
         },
         // **check if a *view* is shown**  
@@ -638,7 +644,7 @@
         //     MoshPit.toggle_state('highlight_all_examples");
         //     // <html class="">
         toggle_state: function(state) {
-            handlers.toggle_state(state);
+            util.exec_on_csv(state, handlers.toggle_state);
             return MoshPit;
         },
         // **check if a *view state* is enabled**  
