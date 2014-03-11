@@ -23,7 +23,7 @@ This demo uses all of the features of `MoshPit.js` to build a mock messaging pla
 `Views`, `Models`, and `Collections` as well as generating data every time you start it up.  It has 2 user defined
 states that you can use (one will make you hate yourself) and changes it's layout and functionality when
 dropping to a mobile/tablet mode.  It also has elements that are all dependent on one another for their own 
-view state.  90% of the code is application code so I only highligthed the lines where `MoshPit.js` comes into play.
+view state.  99% of the code is application code so I only highligthed the lines where `MoshPit.js` comes into play.
 
 ###Simple Demos
 **What do these demos do?**
