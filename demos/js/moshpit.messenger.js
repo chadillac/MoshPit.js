@@ -142,7 +142,7 @@ var DetailsDisplay = Backbone.View.extend({
                     }
                 for (var j=0; j<30; j++) {
                     var direction = (Math.round(Math.random()*100) > 50) ? 'TO' : 'FROM';
-                    var message = (direction == 'TO') ? 'Do you have '+j+' foos?' : 'No, I have '+j+' bars.';
+                    var message = (direction == 'TO') ? 'How many foos do you have? I have '+j+' foos.' : 'No foos, but I have '+j+' bars.';
                     var the_min = (j+1 <= 9) ? "0"+String(j+1) : j+1;
                     var the_time = the_hour+":"+the_min+" pm";
                     convo.messages.push({

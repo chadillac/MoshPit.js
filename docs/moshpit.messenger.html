@@ -240,7 +240,7 @@
                     }
                 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j=<span class="hljs-number">0</span>; j&lt;<span class="hljs-number">30</span>; j++) {
                     <span class="hljs-keyword">var</span> direction = (<span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random()*<span class="hljs-number">100</span>) &gt; <span class="hljs-number">50</span>) ? <span class="hljs-string">'TO'</span> : <span class="hljs-string">'FROM'</span>;
-                    <span class="hljs-keyword">var</span> message = (direction == <span class="hljs-string">'TO'</span>) ? <span class="hljs-string">'Do you have '</span>+j+<span class="hljs-string">' foos?'</span> : <span class="hljs-string">'No, I have '</span>+j+<span class="hljs-string">' bars.'</span>;
+                    <span class="hljs-keyword">var</span> message = (direction == <span class="hljs-string">'TO'</span>) ? <span class="hljs-string">'How many foos do you have? I have '</span>+j+<span class="hljs-string">' foos.'</span> : <span class="hljs-string">'No foos, but I have '</span>+j+<span class="hljs-string">' bars.'</span>;
                     <span class="hljs-keyword">var</span> the_min = (j+<span class="hljs-number">1</span> &lt;= <span class="hljs-number">9</span>) ? <span class="hljs-string">"0"</span>+<span class="hljs-built_in">String</span>(j+<span class="hljs-number">1</span>) : j+<span class="hljs-number">1</span>;
                     <span class="hljs-keyword">var</span> the_time = the_hour+<span class="hljs-string">":"</span>+the_min+<span class="hljs-string">" pm"</span>;
                     convo.messages.push({
