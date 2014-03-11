@@ -101,8 +101,8 @@ This is the LESS file that was parsed via `lessc` to produce the final CSS file 
 ###[LESS file used in all of the Simple demos](http://github.com/chadillac/MoshPit.js/blob/master/demos/less/demo.less)
 This is the LESS file that was parsed via `lessc` to produce the final CSS file used in all of the demos.
 
-###[CSS file used in all of the Simple demos](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.css)
+###[CSS file used in the MoshPit Messenger demo](https://github.com/chadillac/MoshPit.js/blob/master/demos/moshpit.messenger.css)
 This is the results from the LESS file above after processing with `lessc`.
 
-###[CSS file used in all of the MoshPit Messenger demo](https://github.com/chadillac/MoshPit.js/blob/master/demos/moshpit.messenger.css)
+###[CSS file used in all of the Simple demos](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.css)
 This is the results from the LESS file above after processing with `lessc`.
