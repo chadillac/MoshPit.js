@@ -8,7 +8,7 @@ Using MoshPit.js
 It was built on 1.11.0, but it should work pretty much universally across the versions.  If you 
 find an issue... report it... or fix it (please fix it!) and request a pull.
 
-###Include MoshPit.js in your 
+###Include MoshPit.js in your project
 
 To use `MoshPit.js` you'll need to include it in your page **after** jQuery.
 
