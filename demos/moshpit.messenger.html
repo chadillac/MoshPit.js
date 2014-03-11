@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>MoshPit.js : Demo</title>
+        <link type="text/css" media="screen" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></link>
+        <link type="text/css" media="screen" rel="stylesheet" href="http://getbootstrap.com/examples/starter-template/starter-template.css"></link>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+
+        <!-- core -->
+        <link type="text/css" media="screen" rel="stylesheet" href="moshpit.messenger.css"></link>
+        <script type="text/javascript" src="js/moshpit.js"></script>
+        <script type="text/javascript" src="js/moshpit.messenger.js"></script>
+
+    </head>
+    <body>
+
+        <div id="app_controls">
+            <button data-moshpit="toggle_state" data-view="dark_mode">dark mode?</button>
+            <button data-moshpit="toggle_state" data-view="eyes_bleed">i hate myself mode?</button>
+        </div>
+
+        <div id="threads">
+            <div id="thread_view_controls">
+                <button data-moshpit="show" data-view="threads" id="show_threads">&gt;&gt;</button>
+                <button data-moshpit="hide" data-view="threads" id="hide_threads">&lt;&lt;</button>
+            </div>
+
+            <ul id="threads_list">
+                <li class="thread_item">a thread</li>
+            </ul>
+        </div>
+
+        <div id="message_details">
+            <div id="message_details_controls">
+                <button data-moshpit="hide" data-view="message_details" id="hide_message_details">hide details</button>
+                <button data-moshpit="show" data-view="message_details" id="show_message_details">show details</button>
+            </div>
+
+            <h4>MoshPit.js Messenger v9001</h4>
+            <sub>message details</sub>
+
+            <div class="sender_detail">
+                From: <span class="real_name">send name</span>
+                &lt;<span class="sender_address">sendr@email.com</span>&gt;
+                <div><span class="recv_time">10:00am</span></div>
+            </div>
+
+        </div>
+
+        <div id="message_content">
+            <div id="message_content_messages"></div>
+        </div>
+
+    </body>
+</html>
