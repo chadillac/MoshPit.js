@@ -10,6 +10,8 @@ views, states, and view conflict resolution**.  Now make all of that easy to use
 applications and frameworks**.  Make it **so easy you don't need to touch a single line of javascript to use it**. Now make it easy
 enough that **designers can modify the look, feel, *and behavior* of the application without needing to change a line of code**.
 
+**[I'm sold, how do I use it?!](https://github.com/chadillac/MoshPit.js#how-can-i-start-using-this-thing)**
+
 ##Show me some demos
 ###Advanced Demo
 [MoshPit Messenger demo](http://chadillac.github.io/MoshPit.js/demos/moshpit.messenger.html)
