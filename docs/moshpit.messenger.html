@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>moshpit.messenger.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>moshpit.messenger.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Conversation = Backbone.Model.extend({
+        defaults: {
+                sender_name:<span class="hljs-string">'John Doe'</span>,
+                sender_address:<span class="hljs-string">'j.d@email.com'</span>,
+                messages:[]
+            }
+    });
+
+<span class="hljs-keyword">var</span> InboxCollection = Backbone.Collection.extend({});
+
+<span class="hljs-keyword">var</span> ThreadList = Backbone.View.extend({
+        events:{
+            <span class="hljs-string">'click li'</span>:<span class="hljs-string">'_clicked'</span>    
+        },
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+            <span class="hljs-keyword">this</span>.clicked_handler = opts.clicked || <span class="hljs-literal">false</span>;
+        },
+        _clicked: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(evnt)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>do nadda</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> $clicked = $(evnt.currentTarget);
+            <span class="hljs-keyword">if</span> ($clicked.data(<span class="hljs-string">'thread-index'</span>)) {
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.clicked_handler === <span class="hljs-string">'function'</span>) {
+                    <span class="hljs-keyword">this</span>.clicked_handler(<span class="hljs-keyword">this</span>.collection.at($clicked.data(<span class="hljs-string">'thread-index'</span>)));
+                }
+            }
+        },
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> html_out = <span class="hljs-string">''</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> ci=<span class="hljs-number">0</span>,cl=<span class="hljs-keyword">this</span>.collection.length; ci&lt;cl; ci++) {
+                <span class="hljs-keyword">var</span> a_thread = <span class="hljs-keyword">this</span>.collection.at(ci);    
+                <span class="hljs-keyword">var</span> l_msg = _.last(a_thread.get(<span class="hljs-string">'messages'</span>));
+                <span class="hljs-keyword">var</span> s_name = a_thread.get(<span class="hljs-string">'sender_name'</span>);
+                <span class="hljs-keyword">var</span> m_time = l_msg.time;
+                <span class="hljs-keyword">var</span> m_body = l_msg.body;
+
+                html_out += <span class="hljs-string">'&lt;li data-thread-index="'</span>+ci+<span class="hljs-string">'"&gt;'</span>;
+                html_out += <span class="hljs-string">'&lt;span&gt;'</span>+s_name+<span class="hljs-string">'&lt;/span&gt;'</span>;
+                html_out += <span class="hljs-string">'&lt;span&gt;'</span>+m_body+<span class="hljs-string">'&lt;/span&gt;'</span>;
+                html_out += <span class="hljs-string">'&lt;span&gt;'</span>+(l_msg.direction == <span class="hljs-string">'TO'</span> ? <span class="hljs-string">'sent'</span> : <span class="hljs-string">'recv\'d'</span>)+<span class="hljs-string">' @ '</span>+m_time+<span class="hljs-string">'&lt;/span&gt;&lt;/li&gt;'</span>;
+            }
+            <span class="hljs-keyword">this</span>.$el.empty().html(html_out);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        } 
+    });
+
+<span class="hljs-keyword">var</span> MessagesDisplay = Backbone.View.extend({
+        change_model: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(new_model)</span> {</span>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model) {
+                <span class="hljs-keyword">this</span>.model.off(<span class="hljs-string">'change'</span>,<span class="hljs-keyword">this</span>.render,<span class="hljs-keyword">this</span>); 
+            }
+            <span class="hljs-keyword">this</span>.model = new_model;
+            <span class="hljs-keyword">this</span>.model.on(<span class="hljs-string">'change'</span>,<span class="hljs-keyword">this</span>.render,<span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">this</span>.render();
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        },
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> msgs = <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'messages'</span>);
+            <span class="hljs-keyword">var</span> html_out = <span class="hljs-string">''</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> mi=<span class="hljs-number">0</span>,ml=msgs.length; mi&lt;ml; mi++) {
+                <span class="hljs-keyword">var</span> a_msg = msgs[mi];
+                <span class="hljs-keyword">var</span> name = (a_msg.direction == <span class="hljs-string">'TO'</span>) ? <span class="hljs-string">'You'</span> : <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'sender_name'</span>); 
+
+                html_out += <span class="hljs-string">'&lt;div class="message-entry'</span>;
+                html_out += (a_msg.direction == <span class="hljs-string">'TO'</span>) ? <span class="hljs-string">' message-to"&gt;'</span> : <span class="hljs-string">' message-from"&gt;'</span>;
+                html_out += <span class="hljs-string">'&lt;span&gt;'</span>+name+<span class="hljs-string">' said :&lt;/span&gt;'</span>;
+                html_out += <span class="hljs-string">'&lt;span&gt;'</span>+a_msg.body+<span class="hljs-string">'&lt;/span&gt;'</span>;
+                html_out += <span class="hljs-string">'&lt;span&gt;'</span>+(a_msg.direction == <span class="hljs-string">'TO'</span> ? <span class="hljs-string">'sent '</span> : <span class="hljs-string">'recv\'d'</span>)+<span class="hljs-string">' @ '</span>+a_msg.time+<span class="hljs-string">'&lt;/span&gt;'</span>;
+                html_out += <span class="hljs-string">'&lt;/div&gt;'</span>;
+            }
+            <span class="hljs-keyword">this</span>.$el.empty().html(html_out);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        }
+    });
+
+<span class="hljs-keyword">var</span> DetailsDisplay = Backbone.View.extend({
+        change_model: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(new_model)</span> {</span>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model) {
+                <span class="hljs-keyword">this</span>.model.off(<span class="hljs-string">'change'</span>,<span class="hljs-keyword">this</span>.render,<span class="hljs-keyword">this</span>); 
+            }
+            <span class="hljs-keyword">this</span>.model = new_model;
+            <span class="hljs-keyword">this</span>.model.on(<span class="hljs-string">'change'</span>,<span class="hljs-keyword">this</span>.render,<span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">this</span>.render();
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        },
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> l_msg = _.last(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'messages'</span>));
+            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.sender_detail &gt; .real_name'</span>).text(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'sender_name'</span>));
+            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.sender_detail &gt; .sender_address'</span>).text(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'sender_address'</span>));
+            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.recv_time'</span>).text(<span class="hljs-string">'last activity @ '</span>+l_msg.time);
+        }
+    });
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">var</span> gui = {
+        elems:{},
+        init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">this</span>.elems.$message_content = $(<span class="hljs-string">'#message_content'</span>);  
+            <span class="hljs-keyword">this</span>.elems.$message_details = $(<span class="hljs-string">'#message_details'</span>);
+            <span class="hljs-keyword">this</span>.elems.$threads = $(<span class="hljs-string">'#threads'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>backbone views</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">this</span>.elems.ThreadList = <span class="hljs-keyword">new</span> ThreadList({
+                    el:<span class="hljs-string">"#threads_list"</span>,
+                    collection:data.InboxCollection,
+                    clicked:events.change_active
+                });
+
+            <span class="hljs-keyword">this</span>.elems.MessagesDisplay = <span class="hljs-keyword">new</span> MessagesDisplay({
+                    el:<span class="hljs-string">'#message_content_messages'</span>
+                });
+
+            <span class="hljs-keyword">this</span>.elems.DetailsDisplay = <span class="hljs-keyword">new</span> DetailsDisplay({
+                    el:<span class="hljs-string">'#message_details'</span> 
+                });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Join <code>MoshPit.js</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            MoshPit.join(<span class="hljs-keyword">this</span>.elems.$message_details);
+            MoshPit.join(<span class="hljs-keyword">this</span>.elems.$threads);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Default threads and message_details to being shown onload</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            MoshPit.show(<span class="hljs-string">'threads,message_details'</span>);
+
+            events.change_active(data.InboxCollection.first());
+        }    
+    };   
+    
+    <span class="hljs-keyword">var</span> events = {
+        change_active: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(new_model)</span> {</span>
+            data.ActiveConversation = new_model; 
+            gui.elems.ThreadList.render();
+            gui.elems.DetailsDisplay.change_model(data.ActiveConversation);
+            gui.elems.MessagesDisplay.change_model(data.ActiveConversation);
+        }
+    }; 
+
+    <span class="hljs-keyword">var</span> data = {
+        init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">this</span>.InboxCollection = <span class="hljs-keyword">new</span> InboxCollection(); 
+            <span class="hljs-keyword">this</span>.ActiveConversation = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>build our dummy data</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">30</span>; i++) {
+                <span class="hljs-keyword">var</span> convo = {
+                    sender_name: <span class="hljs-string">'Mr. Sender the '</span>+i,
+                    sender_address: <span class="hljs-string">'mr.sender.'</span>+i+<span class="hljs-string">'@email.com'</span>,
+                    messages:[]
+                };
+                <span class="hljs-keyword">var</span> the_hour = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random()*<span class="hljs-number">11</span>);
+                    <span class="hljs-keyword">if</span> (the_hour &lt;= <span class="hljs-number">0</span>) {
+                        the_hour = <span class="hljs-number">1</span>;    
+                    }
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j=<span class="hljs-number">0</span>; j&lt;<span class="hljs-number">30</span>; j++) {
+                    <span class="hljs-keyword">var</span> direction = (<span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random()*<span class="hljs-number">100</span>) &gt; <span class="hljs-number">50</span>) ? <span class="hljs-string">'TO'</span> : <span class="hljs-string">'FROM'</span>;
+                    <span class="hljs-keyword">var</span> message = (direction == <span class="hljs-string">'TO'</span>) ? <span class="hljs-string">'Do you have '</span>+j+<span class="hljs-string">' foos?'</span> : <span class="hljs-string">'No, I have '</span>+j+<span class="hljs-string">' bars.'</span>;
+                    <span class="hljs-keyword">var</span> the_min = (j+<span class="hljs-number">1</span> &lt;= <span class="hljs-number">9</span>) ? <span class="hljs-string">"0"</span>+<span class="hljs-built_in">String</span>(j+<span class="hljs-number">1</span>) : j+<span class="hljs-number">1</span>;
+                    <span class="hljs-keyword">var</span> the_time = the_hour+<span class="hljs-string">":"</span>+the_min+<span class="hljs-string">" pm"</span>;
+                    convo.messages.push({
+                            direction:direction,
+                            body:message,
+                            time: the_time
+                        });
+                }
+                data.InboxCollection.add(<span class="hljs-keyword">new</span> Conversation(convo),{silent:<span class="hljs-literal">true</span>});    
+            }
+            data.InboxCollection.trigger(<span class="hljs-string">'change'</span>);
+        }
+    };
+
+    <span class="hljs-keyword">var</span> init = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+        data.init();
+        gui.init();    
+    };
+    $(init);
+})();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
