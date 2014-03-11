@@ -40,9 +40,9 @@ view state.  99% of the code is application code so I only highligthed the lines
 
 <sub>1.1 you can still use `@media` queries and I actually think you *should*, they were omitted to reduce confusion.</sub>  
 <sub>2.1 views will consume as much space as we tell them to based on what views are currently shown</sub>  
-<sub>3.1 screen sizes change styles and behavior of shown elements</sub>  
-<sub>4.1 the blue buttons won't be shown on screens smaller than 900px wide</sub>  
-<sub>5.1 we also hide controls to only show controls applicable to the current view state</sub>  
+<sub>3.1 screen/layout sizes change styles and behavior of shown elements</sub>  
+<sub>4.1 the blue buttons won't be shown on smaller screens/layouts</sub>  
+<sub>5.1 we also hide controls to only show controls applicable to the functionality (e.g. panel 2 can't be turned on without panel 1 being shown, panel 1 can't be hidden when panel 2 is shown, etc.)</sub>  
 
 ###[no javascript demo](http://chadillac.github.io/MoshPit.js/demos/demo.html)
 ~~javascript~~ | [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.html)  
