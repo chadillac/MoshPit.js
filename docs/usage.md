@@ -100,4 +100,4 @@ Currently I you have to customize them directly in the MoshPit declaration, it's
 
 ###You're good to go!
 
-Now go spread the word! #moshpitjs
+Now go spread the word! #gamechanger #moshpitjs
