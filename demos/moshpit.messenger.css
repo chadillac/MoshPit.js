@@ -1,0 +1,306 @@
+/* show app controls at the top */
+#app_controls {
+  position: absolute;
+  top: 0;
+  z-index: 200;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+}
+#app_controls button {
+  border: 0;
+  margin: 0 2px;
+  background-color: #333;
+  color: #FFF;
+}
+/* message_content will consume the entire view and will never be 
+   hidden, therefore it doesn't need a _shown class */
+#message_content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  font-size: 15px;
+  overflow-y: auto;
+  padding-top: 30px;
+}
+#message_content .message-entry {
+  margin: 2px;
+  border: 1px solid #999;
+  padding: 5px;
+  background-color: #EEE;
+  color: #000;
+}
+#message_content .message-entry span {
+  display: block;
+}
+#message_content .message-entry :first-child {
+  font-weight: bold;
+  font-size: 11px;
+  color: #999;
+}
+#message_content .message-entry :last-child {
+  font-size: 11px;
+  padding-top: 5px;
+  color: #999;
+}
+#message_content .message-to :first-child {
+  color: blue;
+}
+#message_content .message-from :first-child {
+  color: red;
+}
+/* threads will use 250px of the left side of the screen
+   and can be hidden, so it will be off screen by default */
+#threads {
+  position: absolute;
+  left: -250px;
+  top: 0;
+  bottom: 0;
+  background-color: #CCC;
+  width: 249px;
+  border: 1px solid #999;
+  z-index: 100;
+  /* we'll default the controls to show the 
+       show threads button and hide the other */
+}
+#threads #thread_view_controls {
+  position: absolute;
+  right: -29px;
+  top: -1px;
+}
+#threads #thread_view_controls button {
+  background-color: #999;
+  border: 0;
+  color: #FFF;
+  outline: 0;
+}
+#threads #hide_threads {
+  display: none;
+}
+#threads #show_threads {
+  display: block;
+}
+#threads #threads_list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+#threads #threads_list li {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #999;
+  background-color: #CCC;
+  color: #333;
+}
+#threads #threads_list li span {
+  display: block;
+}
+#threads #threads_list li :first-child {
+  font-weight: bold;
+}
+#threads #threads_list li :last-child {
+  font-size: 10px;
+  font-weight: bold;
+  color: #666;
+  text-align: right;
+}
+#threads #threads_list li:hover {
+  background-color: #999;
+  color: #000;
+}
+/* now we configure what we want when threads is shown */
+.threads_shown {
+  /* put it on screen */
+  /* move message_content and message_details 250px
+       off the left side, since we're now consuming that space */
+}
+.threads_shown #threads {
+  left: 0;
+  /* flip the buttons that are visible */
+}
+.threads_shown #threads #show_threads {
+  display: none;
+}
+.threads_shown #threads #hide_threads {
+  display: block;
+}
+.threads_shown #message_content,
+.threads_shown #message_details {
+  left: 250px;
+}
+/* defaults for message details, also, since it can be hidden we'll hide it
+   by default by moving it 100px off the top of the screen */
+#message_details {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  right: 0;
+  height: 99px;
+  background-color: #EEE;
+  text-align: right;
+  border-bottom: 1px solid #999;
+  z-index: 50;
+  /* default to show the show_message_details button by default */
+}
+#message_details #message_details_controls {
+  position: absolute;
+  right: 30px;
+  bottom: -22px;
+}
+#message_details #message_details_controls button {
+  border: 0;
+  background-color: #999;
+  color: #FFF;
+  outline: 0;
+}
+#message_details #hide_message_details {
+  display: none;
+}
+#message_details #show_message_details {
+  display: block;
+}
+#message_details .sender_detail {
+  text-align: left;
+  padding: 5px;
+}
+#message_details .sender_detail :first-child {
+  font-weight: bold;
+}
+#message_details .sender_detail .recv_time {
+  font-size: 10px;
+  font-weight: bold;
+  color: #666;
+}
+/* message details are now shown */
+.message_details_shown {
+  /* move it on screen */
+  /* push the message content 100px off the top
+       since we're now consuming that space */
+}
+.message_details_shown #message_details {
+  top: 0;
+  /* flip buttons */
+}
+.message_details_shown #message_details #show_message_details {
+  display: none;
+}
+.message_details_shown #message_details #hide_message_details {
+  display: block;
+}
+.message_details_shown #message_content {
+  top: 100px;
+}
+/* user defined application state called dark_mode */
+.state_dark_mode {
+  /* darken the things! */
+}
+.state_dark_mode body {
+  background-color: #000;
+}
+.state_dark_mode #threads #threads_list {
+  background-color: #000;
+}
+.state_dark_mode #threads #threads_list li {
+  background-color: #333;
+  color: #CCC;
+  border-bottom: 1px solid #666;
+}
+.state_dark_mode #message_details {
+  background-color: #000;
+  color: #999;
+}
+.state_dark_mode #message_content {
+  background-color: #000;
+}
+.state_dark_mode #message_content .message-entry {
+  background-color: #333;
+  color: #FFF;
+  border: 1px solid #666;
+}
+.state_dark_mode #message_content .message-to :first-child {
+  color: pink;
+}
+.state_dark_mode #message_content .message-from :first-child {
+  color: orange;
+}
+/* user defined state called eyes_bleed */
+.state_eyes_bleed {
+  /* make you want to gouge out your eyes */
+}
+.state_eyes_bleed * {
+  background-color: #BBFF00 !important;
+  color: #55FFFF !important;
+}
+/* mobile and tablets have smaller screens so 
+   we want to makes some changes to our layout */
+.mobile,
+.tablet {
+  /* we'll hide the app_controls all the time here
+       since we don't have room and they're not very useful */
+  /* we'll make threads consume the top half of the screen 
+       and change their default to always on */
+  /* message details will be behind the threads by default
+       and we'll hide the h4 element since we need more room */
+  /* message_content will now consume the bottom 50% of the screen */
+  /* when message_details are shown on a tablet */
+}
+.mobile #app_controls,
+.tablet #app_controls {
+  display: none;
+}
+.mobile #threads,
+.tablet #threads {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  width: auto;
+  /* we'll also hide their view/hide controls */
+}
+.mobile #threads #thread_view_controls,
+.tablet #threads #thread_view_controls {
+  display: none;
+}
+.mobile #message_details,
+.tablet #message_details {
+  top: auto;
+  bottom: 50%;
+  height: auto;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+.mobile #message_details h4,
+.tablet #message_details h4 {
+  display: none;
+}
+.mobile #message_content,
+.tablet #message_content {
+  top: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.mobile .message_details_shown,
+.tablet .message_details_shown {
+  /* we'll set their top to 40.5% */
+  /* and we'll make the threads display only consume the 
+           top 40% of the screen, leaving 10% for message_details
+           to live when visible */
+}
+.mobile .message_details_shown #message_details,
+.tablet .message_details_shown #message_details {
+  top: 40.5%;
+}
+.mobile .message_details_shown #threads,
+.tablet .message_details_shown #threads {
+  bottom: 60%;
+}
