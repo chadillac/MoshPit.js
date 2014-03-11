@@ -57,7 +57,7 @@ This demo requires no javascript to be written.  It utilizes `data-moshpit` on H
 This demo uses basic design patterns found in most applications, it uses `MoshPit.js` via it's global namespace 
 from globally available functions.
 
-###[jquery demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.html)
+###[jquery.manual demo](http://chadillac.github.io/MoshPit.js/demos/demo.jquery.html)
 [javascript](http://chadillac.github.io/MoshPit.js/docs/jquery.html)
  | 
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.jquery.html)   
