@@ -39,7 +39,7 @@ When you let `MoshPit` track an element it will catch calls to `$.show`,`$.hide`
 
 ###No! I just want to do it myself!
 
-Okay, so you can use all of these methods, and they work example how you'd expect.
+Okay, so you can use all of these methods, and they work exactly how you'd expect.
 
      // views
      MoshPit.hide('my_view');
@@ -64,6 +64,20 @@ Okay, so you can use all of these methods, and they work example how you'd expec
 Yep, just leave the pit, brah.
 
      MoshPit.leave('my_view');
+
+###Wait a second, I thought you said I didn't have to use JavaScript!?
+
+`MoshPit` monitors the DOM for click events, if you use these HTML data attributes, you clicks will be caught and processed 
+by `MoshPit` (handy for dynamic views, allows you to link functionality between components without needing JS communications).
+
+    <button data-moshpit="[the method]" data-view="[the view]">MoshPit view action</button>
+    <button data-moshpit="[the method]" data-state="[the state]">MoshPit state action</button>
+
+    // working examples
+    <a href="#" data-moshpit="toggle" data-view="my_view">toggle #my_view</a>
+    <a href="#" data-moshpit="toggle_state" data-state="my_state">toggle my_state</a>
+    <input type="button" data-moshpit="show" data-view="#my_view" value="show #my_view">
+    <div data-moshpit="add_state" data-state="my_state">I don't know why you would... but you could.</div>
 
 ###How does it know about screen sizes, or how do I know about them in my LESS/CSS?
 
