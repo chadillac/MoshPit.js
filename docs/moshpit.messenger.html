@@ -139,7 +139,7 @@
                 html_out += <span class="hljs-string">'&lt;span&gt;'</span>+(a_msg.direction == <span class="hljs-string">'TO'</span> ? <span class="hljs-string">'sent '</span> : <span class="hljs-string">'recv\'d'</span>)+<span class="hljs-string">' @ '</span>+a_msg.time+<span class="hljs-string">'&lt;/span&gt;'</span>;
                 html_out += <span class="hljs-string">'&lt;/div&gt;'</span>;
             }
-            <span class="hljs-keyword">this</span>.$el.empty().html(html_out);
+            <span class="hljs-keyword">this</span>.$el.empty().html(html_out).scrollTop(<span class="hljs-number">0</span>);
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
         }
     });
@@ -159,6 +159,7 @@
             <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.sender_detail &gt; .real_name'</span>).text(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'sender_name'</span>));
             <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.sender_detail &gt; .sender_address'</span>).text(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'sender_address'</span>));
             <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.recv_time'</span>).text(<span class="hljs-string">'last activity @ '</span>+l_msg.time);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
         }
     });
 
@@ -200,7 +201,7 @@
                     el:<span class="hljs-string">"#threads_list"</span>,
                     collection:data.InboxCollection,
                     clicked:events.change_active
-                });
+                }).render();
 
             <span class="hljs-keyword">this</span>.elems.MessagesDisplay = <span class="hljs-keyword">new</span> MessagesDisplay({
                     el:<span class="hljs-string">'#message_content_messages'</span>
@@ -217,7 +218,6 @@
     <span class="hljs-keyword">var</span> events = {
         change_active: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(new_model)</span> {</span>
             data.ActiveConversation = new_model; 
-            gui.elems.ThreadList.render();
             gui.elems.DetailsDisplay.change_model(data.ActiveConversation);
             gui.elems.MessagesDisplay.change_model(data.ActiveConversation);
         }
