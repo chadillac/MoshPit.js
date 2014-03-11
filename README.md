@@ -12,7 +12,6 @@ enough that designers can modify the look, feel, and behavior of the application
 
 ##Show me some demos
 ###Advanced Demo
-
 [MoshPit Messenger demo](http://chadillac.github.io/MoshPit.js/demos/moshpit.messenger.html)
 ===
 [javascript](http://chadillac.github.io/MoshPit.js/docs/moshpit.messenger.html)
@@ -25,7 +24,7 @@ dropping to a mobile/tablet mode.  It also has elements that are all dependent o
 view state.  90% of the code is application code so I only highligthed the lines where `MoshPit.js` comes into play.
 
 ###Simple Demos
-###3What do these demos do?
+**What do these demos do?**
 
 *note: all of these demos do the same thing, but they all do it in diffent ways using various javascript implementations.*
 
