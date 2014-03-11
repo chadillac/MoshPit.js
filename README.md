@@ -50,7 +50,7 @@ This demo requires no javascript to be written.  It utilizes `data-moshpit` on H
 `data-view` and `data-state` to tell `MoshPit.js` when and what it should be doing with a view.  
 *note: yes, it still requires javascript, but no additional javascript needed to be written to use `MoshPit.js`*
 
-###[vanilla demo](http://chadillac.github.io/MoshPit.js/demos/demo.vanilla.html)
+###[1999 demo](http://chadillac.github.io/MoshPit.js/demos/demo.vanilla.html)
 [javascript](http://chadillac.github.io/MoshPit.js/docs/vanilla.html)
  | 
 [html](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.vanilla.html)  
