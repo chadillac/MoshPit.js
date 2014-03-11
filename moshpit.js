@@ -103,7 +103,7 @@
         csv_to_class: function(csv,pre,post) {
             var pre = (typeof pre != 'undefined' && pre.length) ? " "+pre : "";
             var post = (typeof post != 'undefined' && post.length) ? post+" " : "";
-            csv = csv.replace(' ','');
+            csv = csv.replace(/\s/g,'');
             csv = csv.split(',').join('[post],').split(',').join('[pre]');
             csv = csv.replace('[post]',post).replace('[pre]',pre);
             csv = pre + csv + post;
@@ -119,7 +119,7 @@
         //     util.exec_on_csv('list,of,things', handlers.show);
         //     // <body class="list_shown of_shown things_shown">
         exec_on_csv: function(csv,action) {
-            var csv = csv.replace(' ','').split(',');
+            var csv = csv.replace(/\s/g,'').split(',');
             for (var i=0,len=csv.length; i<len; i++) {
                 var item = csv[i];
                 var view = $('#'+util.get_namespace(item));
@@ -127,13 +127,13 @@
             }
         },
         // **generate *shown* classes**  
-        // `util.shown_chain`
+        // `util.shown_class`
         //
         // Generate CSS class names for *shown* elements.
         //
-        //     util.shown_chain('list,of,things');
+        //     util.shown_class('list,of,things');
         //     > 'list_shown of_shown things_shown'
-        shown_chain: function(csv_list) {
+        shown_class: function(csv_list) {
             csv_list = csv_list.replace(/#/g,'');
             return util.csv_to_class(csv_list,css.shown.prefix,css.shown.postfix);
         },
@@ -203,7 +203,7 @@
         //     util.is_shown('example_thing');
         //     > false
         is_shown: function(namespace) {
-            return $body.hasClass(util.shown_chain(namespace));
+            return $body.hasClass(util.shown_class(namespace));
         },
         // **test if a state is currently set**  
         // `util.is_state`
@@ -290,7 +290,7 @@
         //     handlers.hide('example');
         //     // <body class="">
         hide: function(namespace) {
-            $body.removeClass(util.shown_chain(namespace)); 
+            $body.removeClass(util.shown_class(util.get_namespace(namespace))); 
         },
         // **show a view**  
         // `handlers.show`
@@ -301,7 +301,7 @@
         //     handlers.show('example');
         //     // <body class="example_shown">
         show: function(namespace) {
-            $body.addClass(util.shown_chain(namespace)); 
+            $body.addClass(util.shown_class(util.get_namespace(namespace))); 
         },
         // **toggle a view**  
         // `handlers.toggle`
@@ -314,6 +314,7 @@
         //     handlers.toggle('example');
         //     //<body class="">
         toggle: function(namespace) {
+            namespace = util.get_namespace(namespace);
             if (util.is_shown(namespace)) {
                 handlers.hide(namespace);
             } else {
@@ -407,11 +408,11 @@
             var view = $clicked.data('view');
             var state = $clicked.data('state');
             if (view || state) {
-                if (typeof handlers[action] != 'undefined') {
+                if (typeof handlers[action] == 'function') {
                     if (state) {
-                        handlers[action](state);
+                        util.exec_on_csv(state, handlers[action]);
                     } else {
-                        handlers[action](view);
+                        util.exec_on_csv(view, handlers[action]);
                     }
                     evnt.preventDefault();
                 }
@@ -557,7 +558,7 @@
         //     }
         //     // <body class="example_shown">
         show: function(view) {
-            handlers.show(view);
+            util.exec_on_csv(view, handlers.show);
             return MoshPit;
         },
         // **manually hide a *view***  
@@ -572,7 +573,7 @@
         //     }
         //     // <body class="">
         hide: function(view) {
-            handlers.hide(view);
+            util.exec_on_csv(view, handlers.hide);
             return MoshPit;
         },
         // **manually toggle a *view***  
@@ -618,7 +619,7 @@
         // *views* and allows for simplier LESS structures and
         // less (as in LoC) generated CSS*
         add_state: function(state) {
-            handlers.add_state(state);
+            util.exec_on_csv(state, handlers.add_state);
             return MoshPit;
         },
         // **remove a *view state***  
@@ -630,7 +631,7 @@
         //     MoshPit.remove_state('highlight_all_examples");
         //     // <html class="">
         remove_state: function(state) {
-            handlers.del_state(state);
+            util.exec_on_csv(state, handlers.del_state);
             return MoshPit;
         },
         // **toggle a *view state***  
@@ -644,7 +645,7 @@
         //     MoshPit.toggle_state('highlight_all_examples");
         //     // <html class="">
         toggle_state: function(state) {
-            util.exec_on_csv(state, handlers.toggle_state);
+            util.exec_on_csv(state, moshpit.toggle_state);
             return MoshPit;
         },
         // **check if a *view state* is enabled**  
