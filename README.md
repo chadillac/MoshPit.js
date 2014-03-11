@@ -85,6 +85,9 @@ relies on inheritence, chaining, and cascading to deal with conflicts.  With CSS
 if you're a masochist).  Using LESS however we greatly reduce the amount of code we have to write and we get nesting
 and chaining in a very intuitive format.  
 
+###[LESS file used in MoshPit Messenger](http://github.com/chadillac/MoshPit.js/blob/master/demos/less/moshpit.messenger.less)
+This is the LESS file that was parsed via `lessc` to produce the final CSS file use in MoshPit Messenger demo.
+
 ###[LESS file used in all of the demos](http://github.com/chadillac/MoshPit.js/blob/master/demos/less/demo.less)
 This is the LESS file that was parsed via `lessc` to produce the final CSS file used in all of the demos.
 
