@@ -81,6 +81,10 @@ by `MoshPit` (handy for dynamic views, allows you to link functionality between 
     <a href="#" data-moshpit="toggle_state" data-state="my_state">toggle my_state</a>
     <input type="button" data-moshpit="show" data-view="#my_view" value="show #my_view">
     <div data-moshpit="add_state" data-state="my_state">I don't know why you would... but you could.</div>
+    
+    // change multiple views/states
+    <button data-moshpit="hide" data-state="header,footer">hide stuff</button>
+    <button data-moshpit="toggle" data-state="lower_lights,full_screen,hide_header,hide_footer">go fullscreen</button>
 
 ###How does it know about screen sizes, or how do I know about them in my LESS/CSS?
 
