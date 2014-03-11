@@ -93,9 +93,10 @@ var DetailsDisplay = Backbone.View.extend({
     var gui = {
         elems:{},
         init: function() {
-            this.elems.$message_content = $('#message_content');  
-            this.elems.$message_details = $('#message_details');
-            this.elems.$threads = $('#threads');
+            // Join `MoshPit.js` and show our views
+            MoshPit.join('#threads,#message_details');
+            MoshPit.show('#threads,#message_details');
+            // 
 
             this.elems.ThreadList = new ThreadList({
                     el:"#threads_list",
@@ -110,12 +111,6 @@ var DetailsDisplay = Backbone.View.extend({
             this.elems.DetailsDisplay = new DetailsDisplay({
                     el:'#message_details' 
                 });
-
-            // Join `MoshPit.js`
-            MoshPit.join(this.elems.$message_details);
-            MoshPit.join(this.elems.$threads);
-            // Default threads and message_details to being shown onload
-            MoshPit.show('threads,message_details');
 
             events.change_active(data.InboxCollection.first());
         }    

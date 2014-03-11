@@ -488,9 +488,12 @@
         //     // <body class="example_shown">
         join: function(view) {
             if (typeof view == 'string') {
-                view = $('#'+util.get_namespace(view));
-                if (view.length) {
-                    moshpit.add_jquery.call(moshpit, view);
+                view = view.replace(' ','').split(',');
+                for (var vi=0,vl=view.length;vi<vl;vi++) {
+                    var a_view = $('#'+util.get_namespace(view[vi]));
+                    if (a_view.length) {
+                        moshpit.add_jquery.call(moshpit, a_view);
+                    }
                 }
             } else if (typeof view == 'object') {
                 if (view instanceof jQuery) {
@@ -502,6 +505,7 @@
                     moshpit.add_marionette.call(moshpit, view);
                 }
             }
+            return MoshPit;
         },
         // **disable tracking of a *view***  
         // `MoshPit.leave`
@@ -533,6 +537,7 @@
                     moshpit.del_marionette.call(moshpit, view);
                 }
             }
+            return MoshPit;
         },
         // **manually show a *view***  
         // `MoshPit.show`
@@ -547,6 +552,7 @@
         //     // <body class="example_shown">
         show: function(view) {
             handlers.show(util.get_namespace(view));            
+            return MoshPit;
         },
         // **manually hide a *view***  
         // `MoshPit.hide`
@@ -561,6 +567,7 @@
         //     // <body class="">
         hide: function(view) {
             handlers.hide(util.get_namespace(view));
+            return MoshPit;
         },
         // **manually toggle a *view***  
         // `MoshPit.toggle`
@@ -574,6 +581,7 @@
         //     // <body class="">
         toggle: function(view) {
             handlers.toggle(util.get_namespace(view));
+            return MoshPit;
         },
         // **check if a *view* is shown**  
         // `MoshPit.is_shown`
@@ -603,7 +611,10 @@
         // *note: states are useful for modifying multiple 
         // *views* and allows for simplier LESS structures and
         // less (as in LoC) generated CSS*
-        add_state: handlers.add_state,
+        add_state: function(state) {
+            handlers.add_state(state);
+            return MoshPit;
+        },
         // **remove a *view state***  
         // `MoshPit.remove_state`
         //
@@ -612,7 +623,10 @@
         //     // <html class="state_highlight_all_examples">
         //     MoshPit.remove_state('highlight_all_examples");
         //     // <html class="">
-        remove_state: handlers.del_state,
+        remove_state: function(state) {
+            handlers.del_state(state);
+            return MoshPit;
+        },
         // **toggle a *view state***  
         // `MoshPit.toggle_state`
         //
@@ -623,7 +637,10 @@
         //     // <html class="state_highlight_all_examples">
         //     MoshPit.toggle_state('highlight_all_examples");
         //     // <html class="">
-        toggle_state: handlers.toggle_state,
+        toggle_state: function(state) {
+            handlers.toggle_state(state);
+            return MoshPit;
+        },
         // **check if a *view state* is enabled**  
         // `MoshPit.is_state`
         //
