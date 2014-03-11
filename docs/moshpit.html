@@ -911,9 +911,12 @@ $(<span class="hljs-string">'#example'</span>).show();
             
             <div class="content"><div class='highlight'><pre>        join: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view)</span> {</span>
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> view == <span class="hljs-string">'string'</span>) {
-                view = $(<span class="hljs-string">'#'</span>+util.get_namespace(view));
-                <span class="hljs-keyword">if</span> (view.length) {
-                    moshpit.add_jquery.call(moshpit, view);
+                view = view.replace(<span class="hljs-string">' '</span>,<span class="hljs-string">''</span>).split(<span class="hljs-string">','</span>);
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> vi=<span class="hljs-number">0</span>,vl=view.length;vi&lt;vl;vi++) {
+                    <span class="hljs-keyword">var</span> a_view = $(<span class="hljs-string">'#'</span>+util.get_namespace(view[vi]));
+                    <span class="hljs-keyword">if</span> (a_view.length) {
+                        moshpit.add_jquery.call(moshpit, a_view);
+                    }
                 }
             } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> view == <span class="hljs-string">'object'</span>) {
                 <span class="hljs-keyword">if</span> (view <span class="hljs-keyword">instanceof</span> jQuery) {
@@ -925,6 +928,7 @@ $(<span class="hljs-string">'#example'</span>).show();
                     moshpit.add_marionette.call(moshpit, view);
                 }
             }
+            <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
         </li>
@@ -966,6 +970,7 @@ $(<span class="hljs-string">'#example'</span>).show();
                     moshpit.del_marionette.call(moshpit, view);
                 }
             }
+            <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
         </li>
@@ -990,6 +995,7 @@ of it’s tracked status.</p>
             
             <div class="content"><div class='highlight'><pre>        show: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view)</span> {</span>
             handlers.show(util.get_namespace(view));            
+            <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
         </li>
@@ -1014,6 +1020,7 @@ of it’s tracked status.</p>
             
             <div class="content"><div class='highlight'><pre>        hide: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view)</span> {</span>
             handlers.hide(util.get_namespace(view));
+            <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
         </li>
@@ -1037,6 +1044,7 @@ MoshPit.toggle(<span class="hljs-string">'example'</span>);
             
             <div class="content"><div class='highlight'><pre>        toggle: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view)</span> {</span>
             handlers.toggle(util.get_namespace(view));
+            <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
         </li>
@@ -1085,7 +1093,10 @@ less (as in LoC) generated CSS</em></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        add_state: handlers.add_state,</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        add_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
+            handlers.add_state(state);
+            <span class="hljs-keyword">return</span> MoshPit;
+        },</pre></div></div>
             
         </li>
         
@@ -1104,7 +1115,10 @@ MoshPit.remove_state('highlight_all_examples");
 </code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>        remove_state: handlers.del_state,</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        remove_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
+            handlers.del_state(state);
+            <span class="hljs-keyword">return</span> MoshPit;
+        },</pre></div></div>
             
         </li>
         
@@ -1125,7 +1139,10 @@ MoshPit.toggle_state('highlight_all_examples");
 </code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>        toggle_state: handlers.toggle_state,</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        toggle_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
+            handlers.toggle_state(state);
+            <span class="hljs-keyword">return</span> MoshPit;
+        },</pre></div></div>
             
         </li>
         

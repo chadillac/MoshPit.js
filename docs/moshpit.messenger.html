@@ -165,11 +165,37 @@
 (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
     <span class="hljs-keyword">var</span> gui = {
         elems:{},
-        init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-            <span class="hljs-keyword">this</span>.elems.$message_content = $(<span class="hljs-string">'#message_content'</span>);  
-            <span class="hljs-keyword">this</span>.elems.$message_details = $(<span class="hljs-string">'#message_details'</span>);
-            <span class="hljs-keyword">this</span>.elems.$threads = $(<span class="hljs-string">'#threads'</span>);
+        init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Join <code>MoshPit.js</code> and show our views</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            MoshPit.join(<span class="hljs-string">'#threads,#message_details'</span>);
+            MoshPit.show(<span class="hljs-string">'#threads,#message_details'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.elems.ThreadList = <span class="hljs-keyword">new</span> ThreadList({
                     el:<span class="hljs-string">"#threads_list"</span>,
                     collection:data.InboxCollection,
@@ -182,38 +208,7 @@
 
             <span class="hljs-keyword">this</span>.elems.DetailsDisplay = <span class="hljs-keyword">new</span> DetailsDisplay({
                     el:<span class="hljs-string">'#message_details'</span> 
-                });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>Join <code>MoshPit.js</code></p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            MoshPit.join(<span class="hljs-keyword">this</span>.elems.$message_details);
-            MoshPit.join(<span class="hljs-keyword">this</span>.elems.$threads);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>Default threads and message_details to being shown onload</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            MoshPit.show(<span class="hljs-string">'threads,message_details'</span>);
+                });
 
             events.change_active(data.InboxCollection.first());
         }    
