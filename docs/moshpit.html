@@ -245,7 +245,7 @@ be added to each item in the list as it’s built.</p>
             <div class="content"><div class='highlight'><pre>        csv_to_class: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(csv,pre,post)</span> {</span>
             <span class="hljs-keyword">var</span> pre = (<span class="hljs-keyword">typeof</span> pre != <span class="hljs-string">'undefined'</span> &amp;&amp; pre.length) ? <span class="hljs-string">" "</span>+pre : <span class="hljs-string">""</span>;
             <span class="hljs-keyword">var</span> post = (<span class="hljs-keyword">typeof</span> post != <span class="hljs-string">'undefined'</span> &amp;&amp; post.length) ? post+<span class="hljs-string">" "</span> : <span class="hljs-string">""</span>;
-            csv = csv.replace(<span class="hljs-string">' '</span>,<span class="hljs-string">''</span>);
+            csv = csv.replace(<span class="hljs-regexp">/\s/g</span>,<span class="hljs-string">''</span>);
             csv = csv.split(<span class="hljs-string">','</span>).join(<span class="hljs-string">'[post],'</span>).split(<span class="hljs-string">','</span>).join(<span class="hljs-string">'[pre]'</span>);
             csv = csv.replace(<span class="hljs-string">'[post]'</span>,post).replace(<span class="hljs-string">'[pre]'</span>,pre);
             csv = pre + csv + post;
@@ -271,7 +271,7 @@ util.exec_on_csv(<span class="hljs-string">'list,of,things'</span>, handlers.sho
             </div>
             
             <div class="content"><div class='highlight'><pre>        exec_on_csv: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(csv,action)</span> {</span>
-            <span class="hljs-keyword">var</span> csv = csv.replace(<span class="hljs-string">' '</span>,<span class="hljs-string">''</span>).split(<span class="hljs-string">','</span>);
+            <span class="hljs-keyword">var</span> csv = csv.replace(<span class="hljs-regexp">/\s/g</span>,<span class="hljs-string">''</span>).split(<span class="hljs-string">','</span>);
             <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>,len=csv.length; i&lt;len; i++) {
                 <span class="hljs-keyword">var</span> item = csv[i];
                 <span class="hljs-keyword">var</span> view = $(<span class="hljs-string">'#'</span>+util.get_namespace(item));
@@ -288,14 +288,14 @@ util.exec_on_csv(<span class="hljs-string">'list,of,things'</span>, handlers.sho
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p><strong>generate <em>shown</em> classes</strong><br><code>util.shown_chain</code></p>
+              <p><strong>generate <em>shown</em> classes</strong><br><code>util.shown_class</code></p>
 <p>Generate CSS class names for <em>shown</em> elements.</p>
-<pre><code>util.shown_chain(<span class="hljs-string">'list,of,things'</span>);
+<pre><code>util.shown_class(<span class="hljs-string">'list,of,things'</span>);
 &gt; <span class="hljs-string">'list_shown of_shown things_shown'</span>
 </code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>        shown_chain: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(csv_list)</span> {</span>
+            <div class="content"><div class='highlight'><pre>        shown_class: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(csv_list)</span> {</span>
             csv_list = csv_list.replace(<span class="hljs-regexp">/#/g</span>,<span class="hljs-string">''</span>);
             <span class="hljs-keyword">return</span> util.csv_to_class(csv_list,css.shown.prefix,css.shown.postfix);
         },</pre></div></div>
@@ -405,7 +405,7 @@ util.is_shown(<span class="hljs-string">'example_thing'</span>);
             </div>
             
             <div class="content"><div class='highlight'><pre>        is_shown: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(namespace)</span> {</span>
-            <span class="hljs-keyword">return</span> $body.hasClass(util.shown_chain(namespace));
+            <span class="hljs-keyword">return</span> $body.hasClass(util.shown_class(namespace));
         },</pre></div></div>
             
         </li>
@@ -544,7 +544,7 @@ handlers.hide(<span class="hljs-string">'example'</span>);
             </div>
             
             <div class="content"><div class='highlight'><pre>        hide: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(namespace)</span> {</span>
-            $body.removeClass(util.shown_chain(namespace)); 
+            $body.removeClass(util.shown_class(util.get_namespace(namespace))); 
         },</pre></div></div>
             
         </li>
@@ -565,7 +565,7 @@ handlers.show(<span class="hljs-string">'example'</span>);
             </div>
             
             <div class="content"><div class='highlight'><pre>        show: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(namespace)</span> {</span>
-            $body.addClass(util.shown_chain(namespace)); 
+            $body.addClass(util.shown_class(util.get_namespace(namespace))); 
         },</pre></div></div>
             
         </li>
@@ -588,6 +588,7 @@ handlers.toggle(<span class="hljs-string">'example'</span>);
             </div>
             
             <div class="content"><div class='highlight'><pre>        toggle: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(namespace)</span> {</span>
+            namespace = util.get_namespace(namespace);
             <span class="hljs-keyword">if</span> (util.is_shown(namespace)) {
                 handlers.hide(namespace);
             } <span class="hljs-keyword">else</span> {
@@ -754,11 +755,11 @@ catching the events we already know we care about.</em></p>
             <span class="hljs-keyword">var</span> view = $clicked.data(<span class="hljs-string">'view'</span>);
             <span class="hljs-keyword">var</span> state = $clicked.data(<span class="hljs-string">'state'</span>);
             <span class="hljs-keyword">if</span> (view || state) {
-                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> handlers[action] != <span class="hljs-string">'undefined'</span>) {
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> handlers[action] == <span class="hljs-string">'function'</span>) {
                     <span class="hljs-keyword">if</span> (state) {
-                        handlers[action](state);
+                        util.exec_on_csv(state, handlers[action]);
                     } <span class="hljs-keyword">else</span> {
-                        handlers[action](view);
+                        util.exec_on_csv(view, handlers[action]);
                     }
                     evnt.preventDefault();
                 }
@@ -1010,7 +1011,7 @@ of it’s tracked status.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>        show: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view)</span> {</span>
-            handlers.show(view);
+            util.exec_on_csv(view, handlers.show);
             <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
@@ -1035,7 +1036,7 @@ of it’s tracked status.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>        hide: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view)</span> {</span>
-            handlers.hide(view);
+            util.exec_on_csv(view, handlers.hide);
             <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
@@ -1110,7 +1111,7 @@ less (as in LoC) generated CSS</em></p>
             </div>
             
             <div class="content"><div class='highlight'><pre>        add_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
-            handlers.add_state(state);
+            util.exec_on_csv(state, handlers.add_state);
             <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
@@ -1132,7 +1133,7 @@ MoshPit.remove_state('highlight_all_examples");
             </div>
             
             <div class="content"><div class='highlight'><pre>        remove_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
-            handlers.del_state(state);
+            util.exec_on_csv(state, handlers.del_state);
             <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
@@ -1156,7 +1157,7 @@ MoshPit.toggle_state('highlight_all_examples");
             </div>
             
             <div class="content"><div class='highlight'><pre>        toggle_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
-            util.exec_on_csv(state, handlers.toggle_state);
+            util.exec_on_csv(state, moshpit.toggle_state);
             <span class="hljs-keyword">return</span> MoshPit;
         },</pre></div></div>
             
