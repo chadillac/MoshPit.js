@@ -47,22 +47,8 @@
         initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
             <span class="hljs-keyword">this</span>.clicked_handler = opts.clicked || <span class="hljs-literal">false</span>;
         },
-        _clicked: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(evnt)</span> {</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>do nadda</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> $clicked = $(evnt.currentTarget);
+        _clicked: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(evnt)</span> {</span>
+            <span class="hljs-keyword">var</span> $clicked = $(evnt.currentTarget);
             <span class="hljs-keyword">if</span> ($clicked.data(<span class="hljs-string">'thread-index'</span>)) {
                 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.clicked_handler === <span class="hljs-string">'function'</span>) {
                     <span class="hljs-keyword">this</span>.clicked_handler(<span class="hljs-keyword">this</span>.collection.at($clicked.data(<span class="hljs-string">'thread-index'</span>)));
@@ -146,11 +132,11 @@
         </li>
         
         
-        <li id="section-3">
+        <li id="section-2">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <p>backbone views</p>
 
@@ -173,11 +159,11 @@
         </li>
         
         
-        <li id="section-4">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Join <code>MoshPit.js</code></p>
 
@@ -189,11 +175,11 @@
         </li>
         
         
-        <li id="section-5">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Default threads and message_details to being shown onload</p>
 
@@ -217,22 +203,9 @@
     <span class="hljs-keyword">var</span> data = {
         init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
             <span class="hljs-keyword">this</span>.InboxCollection = <span class="hljs-keyword">new</span> InboxCollection(); 
-            <span class="hljs-keyword">this</span>.ActiveConversation = <span class="hljs-literal">false</span>;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <p>build our dummy data</p>
+            <span class="hljs-keyword">this</span>.ActiveConversation = <span class="hljs-literal">false</span>;
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">30</span>; i++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">30</span>; i++) { <span class="hljs-comment">// dummy data</span>
                 <span class="hljs-keyword">var</span> convo = {
                     sender_name: <span class="hljs-string">'Mr. Sender the '</span>+i,
                     sender_address: <span class="hljs-string">'mr.sender.'</span>+i+<span class="hljs-string">'@email.com'</span>,

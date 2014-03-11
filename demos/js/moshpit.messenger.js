@@ -16,7 +16,6 @@ var ThreadList = Backbone.View.extend({
             this.clicked_handler = opts.clicked || false;
         },
         _clicked: function(evnt) {
-            // do nadda
             var $clicked = $(evnt.currentTarget);
             if ($clicked.data('thread-index')) {
                 if (typeof this.clicked_handler === 'function') {
@@ -137,8 +136,7 @@ var DetailsDisplay = Backbone.View.extend({
             this.InboxCollection = new InboxCollection(); 
             this.ActiveConversation = false;
 
-            // build our dummy data
-            for (var i=0; i<30; i++) {
+            for (var i=0; i<30; i++) { // dummy data
                 var convo = {
                     sender_name: 'Mr. Sender the '+i,
                     sender_address: 'mr.sender.'+i+'@email.com',
