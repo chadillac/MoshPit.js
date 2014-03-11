@@ -79,7 +79,7 @@ Kind of, we're no jQuery, but you can chain *some* functionality... this will im
      MoshPit.join('#my_view_1').leave('#my_view_3');
      
      // add some states, remove some states.
-     MoshPit.add_state('my,states,here').remove('buh,bye,old_states');
+     MoshPit.add_state('my,states,here').remove_state('buh,bye,old_states');
      
      // remove states, and show a sign up page
      MoshPit.remove_state('full_screen,lower_lights').show('sign_up_splash');
