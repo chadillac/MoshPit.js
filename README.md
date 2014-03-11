@@ -14,7 +14,7 @@ enough that designers can modify the look, feel, and behavior of the application
 ###Advanced Demo
 [MoshPit Messenger demo](http://chadillac.github.io/MoshPit.js/demos/moshpit.messenger.html)
 ===
-[javascript](http://chadillac.github.io/MoshPit.js/docs/moshpit.messenger.html)
+[javascript... scroll down.](http://chadillac.github.io/MoshPit.js/docs/moshpit.messenger.html)
  | 
 [LESS](https://github.com/chadillac/MoshPit.js/blob/master/demos/less/moshpit.messenger.less)
  | 
