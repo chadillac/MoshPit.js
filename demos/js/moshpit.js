@@ -117,7 +117,7 @@
         //
         //     // <body>
         //     util.exec_on_csv('list,of,things', handlers.show);
-        //     > 'list_shown of_shown things_shown'
+        //     // <body class="list_shown of_shown things_shown">
         exec_on_csv: function(csv,action) {
             var csv = csv.replace(' ','').split(',');
             for (var i=0,len=csv.length; i<len; i++) {
