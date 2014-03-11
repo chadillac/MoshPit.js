@@ -84,8 +84,7 @@ This demo uses `Marionette` `Region`s and `ItemView`s and shows intergration wit
 
 ##Let's talk some code.
 As said all of our view management (position, size, colors, etc.) is all handled in CSS (where it should be!) and
-relies on inheritence, chaining, and cascading to deal with conflicts.  With CSS it's a lot of extra typing (but possible
-if you're a masochist).  Using LESS however we greatly reduce the amount of code we have to write and we get nesting
+relies on inheritence, chaining, and cascading to deal with conflicts.  With CSS it's a lot of extra typing (this is why we can't have nice things!).  Using LESS however we greatly reduce the amount of code we have to write and we get nesting
 and chaining in a very intuitive format.  
 
 ###[How can I start using this thing?](https://github.com/chadillac/MoshPit.js/blob/master/docs/usage.md)
