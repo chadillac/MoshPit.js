@@ -123,4 +123,4 @@ Currently you have to customize them directly in the MoshPit source, it's ugly..
 
 ###You're good to go!
 
-Now go spread the word! #moshpitjs
+Now go spread the word and/or [buy me a beer.](https://www.gittip.com/chadillac/)
