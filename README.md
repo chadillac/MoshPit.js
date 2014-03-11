@@ -88,15 +88,18 @@ and chaining in a very intuitive format.
 ###[How can I start using this thing?](https://github.com/chadillac/MoshPit.js/blob/master/docs/usage.md)
 A quick run down of what you need to know if you'd like to start using `MoshPit`.
 
-###[LESS file used in MoshPit Messenger](http://github.com/chadillac/MoshPit.js/blob/master/demos/less/moshpit.messenger.less)
-This is the LESS file that was parsed via `lessc` to produce the final CSS file use in MoshPit Messenger demo.
-
-###[LESS file used in all of the demos](http://github.com/chadillac/MoshPit.js/blob/master/demos/less/demo.less)
-This is the LESS file that was parsed via `lessc` to produce the final CSS file used in all of the demos.
-
-###[CSS file used in all of the demos](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.css)
-This is the results from the LESS file above after processing with `lessc`.
-
 ###[Annotated source of MoshPit.js](http://chadillac.github.io/MoshPit.js/docs/moshpit.html)
 This is an annotated version of the source code.  
 *note: [docco is awesome.](http://jashkenas.github.io/docco/)*
+
+###[LESS file used in MoshPit Messenger](http://github.com/chadillac/MoshPit.js/blob/master/demos/less/moshpit.messenger.less)
+This is the LESS file that was parsed via `lessc` to produce the final CSS file use in MoshPit Messenger demo.
+
+###[LESS file used in all of the Simple demos](http://github.com/chadillac/MoshPit.js/blob/master/demos/less/demo.less)
+This is the LESS file that was parsed via `lessc` to produce the final CSS file used in all of the demos.
+
+###[CSS file used in all of the Simple demos](https://github.com/chadillac/MoshPit.js/blob/master/demos/demo.css)
+This is the results from the LESS file above after processing with `lessc`.
+
+###[CSS file used in all of the MoshPit Messenger demo](https://github.com/chadillac/MoshPit.js/blob/master/demos/moshpit.messenger.css)
+This is the results from the LESS file above after processing with `lessc`.
