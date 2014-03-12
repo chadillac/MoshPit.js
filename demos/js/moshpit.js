@@ -109,21 +109,37 @@
             csv = pre + csv + post;
             return $.trim(csv);
         },
-        // **exec a func for each item of a CSV**  
-        // `util.exec_on_csv`
+        // **exec a view func for each item of a CSV**  
+        // `util.exec_on_view_csv`
         //
         // Process a CSV list, execute our `action` using
-        // each item of the list as the passed in param
+        // each *view* from the list as the passed in param
         //
         //     // <body>
-        //     util.exec_on_csv('list,of,things', handlers.show);
+        //     util.exec_on_view_csv('list,of,things', handlers.show);
         //     // <body class="list_shown of_shown things_shown">
-        exec_on_csv: function(csv,action) {
+        exec_on_view_csv: function(csv,action) {
             var csv = csv.replace(/\s/g,'').split(',');
             for (var i=0,len=csv.length; i<len; i++) {
                 var item = csv[i];
                 var view = $('#'+util.get_namespace(item));
                 action.call(moshpit,view);    
+            }
+        },
+        // **exec a state func for each item of a CSV**  
+        // `util.exec_on_state_csv`
+        //
+        // Process a CSV list, execute our `action` using
+        // each *state* from the list as the passed in param
+        //
+        //     // <html>
+        //     util.exec_on_state_csv('list,of,things', handlers.add_state);
+        //     // <html class="state_list state_of state_things">
+        exec_on_state_csv: function(csv,action) {
+            var csv = csv.replace(/\s/g,'').split(',');
+            for (var i=0,len=csv.length; i<len; i++) {
+                var item = csv[i];
+                action.call(moshpit,item);    
             }
         },
         // **generate *shown* classes**  
@@ -206,17 +222,17 @@
             return $body.hasClass(util.shown_class(namespace));
         },
         // **test if a state is currently set**  
-        // `util.is_state`
+        // `util.has_state`
         // 
         // Helper method to see if an application state is currently set.
         //
         //     // example_state is set
-        //     util.is_state('example');
+        //     util.has_state('example');
         //     > true
         //     // example_state is not set
-        //     util.is_state('example');
+        //     util.has_state('example');
         //     > false
-        is_state: function(state) {
+        has_state: function(state) {
             return $html.hasClass(css.state.prefix + state + css.state.postfix);
         },
         // **Store vanilla jQuery methods we'll replace**  
@@ -368,15 +384,11 @@
         //     // <html class="state_example">
         //     handlers.toggle_state('example');
         //     // <html class="">
-        toggle_state: function(csv_state) {
-            csv_state = csv_state.split(',');
-            for (var i=0,z=csv_state.length;i<z;i++) {
-                var state = $.trim(csv_state[i]);
-                if (util.is_state(state)) {
-                    handlers.del_state(state);
-                } else {
-                    handlers.add_state(state);    
-                }
+        toggle_state: function(state) {
+            if (util.has_state(state)) {
+                handlers.del_state(state);
+            } else {
+                handlers.add_state(state);    
             }
         },
         // **window.resize handler/throttling**  
@@ -410,9 +422,9 @@
             if (view || state) {
                 if (typeof handlers[action] == 'function') {
                     if (state) {
-                        util.exec_on_csv(state, handlers[action]);
+                        util.exec_on_state_csv(state, handlers[action]);
                     } else {
-                        util.exec_on_csv(view, handlers[action]);
+                        util.exec_on_view_csv(view, handlers[action]);
                     }
                     evnt.preventDefault();
                 }
@@ -504,7 +516,7 @@
         //     // <body class="example_shown">
         join: function(view) {
             if (typeof view == 'string') {
-                    util.exec_on_csv(view, moshpit.add_jquery);
+                    util.exec_on_view_csv(view, moshpit.add_jquery);
             } else if (typeof view == 'object') {
                 if (view instanceof jQuery) {
                     moshpit.add_jquery.call(moshpit, view);
@@ -533,7 +545,7 @@
         //     // <body class="">
         leave: function(view) {
             if (typeof view == 'string') {
-                    util.exec_on_csv(view, moshpit.del_jquery);
+                    util.exec_on_view_csv(view, moshpit.del_jquery);
             } else if (typeof view == 'object') {
                 if (view instanceof jQuery) {
                     moshpit.del_jquery.call(moshpit, view);
@@ -558,7 +570,7 @@
         //     }
         //     // <body class="example_shown">
         show: function(view) {
-            util.exec_on_csv(view, handlers.show);
+            util.exec_on_view_csv(view, handlers.show);
             return MoshPit;
         },
         // **manually hide a *view***  
@@ -573,7 +585,7 @@
         //     }
         //     // <body class="">
         hide: function(view) {
-            util.exec_on_csv(view, handlers.hide);
+            util.exec_on_view_csv(view, handlers.hide);
             return MoshPit;
         },
         // **manually toggle a *view***  
@@ -587,7 +599,7 @@
         //     MoshPit.toggle('example');
         //     // <body class="">
         toggle: function(view) {
-            util.exec_on_csv(view, handlers.toggle);
+            util.exec_on_view_csv(view, handlers.toggle);
             return MoshPit;
         },
         // **check if a *view* is shown**  
@@ -619,7 +631,7 @@
         // *views* and allows for simplier LESS structures and
         // less (as in LoC) generated CSS*
         add_state: function(state) {
-            util.exec_on_csv(state, handlers.add_state);
+            util.exec_on_state_csv(state, handlers.add_state);
             return MoshPit;
         },
         // **remove a *view state***  
@@ -631,7 +643,7 @@
         //     MoshPit.remove_state('highlight_all_examples");
         //     // <html class="">
         remove_state: function(state) {
-            util.exec_on_csv(state, handlers.del_state);
+            util.exec_on_state_csv(state, handlers.del_state);
             return MoshPit;
         },
         // **toggle a *view state***  
@@ -645,22 +657,22 @@
         //     MoshPit.toggle_state('highlight_all_examples");
         //     // <html class="">
         toggle_state: function(state) {
-            util.exec_on_csv(state, moshpit.toggle_state);
+            util.exec_on_state_csv(state, handlers.toggle_state);
             return MoshPit;
         },
         // **check if a *view state* is enabled**  
-        // `MoshPit.is_state`
+        // `MoshPit.has_state`
         //
         // Externally accessible means to find out if a
         // *view state* is currently active.
         //
         //     // <html class="state_highlight_all_examples">
-        //     MoshPit.is_state("highlight_all_examples");
+        //     MoshPit.has_state("highlight_all_examples");
         //     > true
         //     // <html class="">
-        //     MoshPit.is_state("highlight_all_examples");
+        //     MoshPit.has_state("highlight_all_examples");
         //     > false
-        is_state: util.is_state
+        has_state: util.has_state
         //
     };
 
