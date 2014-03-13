@@ -100,7 +100,7 @@ until page DOM ready.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> MoshPitSizes = {
+            <div class="content"><div class='highlight'><pre>window.MoshPitSizes = {
     mobile:{min:<span class="hljs-number">0</span>,max:<span class="hljs-number">480</span>},  
     tablet:{min:<span class="hljs-number">481</span>,max:<span class="hljs-number">1024</span>},
     desktop:{min:<span class="hljs-number">1025</span>,max:<span class="hljs-number">1820</span>},
@@ -1254,7 +1254,7 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> init = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-        sizes =  MoshPitSizes;
+        sizes =  window.MoshPitSizes;
         handlers.resize();
         $html = $(<span class="hljs-string">'html'</span>);
         $body = $(<span class="hljs-string">'body'</span>);
