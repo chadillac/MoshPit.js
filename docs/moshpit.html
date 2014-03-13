@@ -84,9 +84,6 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($)</span>{</span>
-<span class="hljs-pi">    'use strict'</span>;</pre></div></div>
-            
         </li>
         
         
@@ -95,6 +92,31 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p><strong>Declare sizes globally, we’ll import later</strong><br><code>MoshPitSizes</code></p>
+<p>We declare these here so they can be customized outside
+of the application code by you.  We don’t assign/use them internally
+until page DOM ready.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> MoshPitSizes = {
+    mobile:{min:<span class="hljs-number">0</span>,max:<span class="hljs-number">480</span>},  
+    tablet:{min:<span class="hljs-number">481</span>,max:<span class="hljs-number">1024</span>},
+    desktop:{min:<span class="hljs-number">1025</span>,max:<span class="hljs-number">1820</span>},
+    desktop_wide:{min:<span class="hljs-number">1821</span>,max:<span class="hljs-number">99999999</span>}
+};
+(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($)</span>{</span>
+<span class="hljs-pi">    'use strict'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p><strong>cache jQuery objs</strong><br><code>$html</code>, <code>$body</code></p>
 <p>Cache jQuery objects of <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> DOM nodes to prevent
@@ -109,11 +131,11 @@ get their variables in place now.</em></p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p><strong>css class configuration</strong><br><code>css</code></p>
 <p>Configuration object for CSS classes that will be generated when we 
@@ -135,11 +157,11 @@ build our <code>_shown</code> and <code>state_</code> class chains in their resp
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p><strong>screen sizes lookup/config</strong><br><code>sizes</code></p>
 <p>A config object for declaring an application state based on screen 
@@ -149,21 +171,16 @@ that will be used for that range.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> sizes = {
-        mobile:{min:<span class="hljs-number">0</span>,max:<span class="hljs-number">480</span>},  
-        tablet:{min:<span class="hljs-number">481</span>,max:<span class="hljs-number">1024</span>},
-        desktop:{min:<span class="hljs-number">1025</span>,max:<span class="hljs-number">1820</span>},
-        desktop_wide:{min:<span class="hljs-number">1821</span>,max:<span class="hljs-number">99999999</span>}
-    };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> sizes = {};</pre></div></div>
             
         </li>
         
         
-        <li id="section-6">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p><strong>setTimeout ID storage/mapping</strong><br><code>timers</code></p>
 <p>Store ID’s of our internal timeouts by name to allow us
@@ -176,11 +193,11 @@ to clear them if/when we need to (e.g. resize throttling)</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <h2 id="utilities-for-common-tasks">Utilities for common tasks</h2>
 <hr>
@@ -194,11 +211,11 @@ to clear them if/when we need to (e.g. resize throttling)</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p><strong>get a <em>view</em> namespace</strong><br><code>util.get_namespace</code>  </p>
 <p>We accept various things and each has a standard namespace
@@ -227,11 +244,11 @@ util.get_namespace($example);
         </li>
         
         
-        <li id="section-9">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p><strong>CSV to a jQuery class chain</strong><br><code>util.csv_to_class</code></p>
 <p>Convert a CSV list into a class chain that can be used with
@@ -255,11 +272,11 @@ be added to each item in the list as it’s built.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p><strong>exec a view func for each item of a CSV</strong><br><code>util.exec_on_view_csv</code></p>
 <p>Process a CSV list, execute our <code>action</code> using
@@ -282,11 +299,11 @@ util.exec_on_view_csv(<span class="hljs-string">'list,of,things'</span>, handler
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p><strong>exec a state func for each item of a CSV</strong><br><code>util.exec_on_state_csv</code></p>
 <p>Process a CSV list, execute our <code>action</code> using
@@ -308,11 +325,11 @@ util.exec_on_state_csv(<span class="hljs-string">'list,of,things'</span>, handle
         </li>
         
         
-        <li id="section-12">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p><strong>generate <em>shown</em> classes</strong><br><code>util.shown_class</code></p>
 <p>Generate CSS class names for <em>shown</em> elements.</p>
@@ -329,11 +346,11 @@ util.exec_on_state_csv(<span class="hljs-string">'list,of,things'</span>, handle
         </li>
         
         
-        <li id="section-13">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p><strong>generate <em>state</em> classes</strong><br><code>util.state_chain</code></p>
 <p>Generate CSS class names for user defined <em>states</em>.</p>
@@ -350,11 +367,11 @@ util.exec_on_state_csv(<span class="hljs-string">'list,of,things'</span>, handle
         </li>
         
         
-        <li id="section-14">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p><strong>generate <em>size</em> classes</strong><br><code>util.get_sizes_chain</code></p>
 <p>Generate CSS class chain for various screen sizes based on 
@@ -381,11 +398,11 @@ the structure of <code>sizes</code> config object.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p><strong>get the current display size</strong><br><code>util.get_size</code></p>
 <p>Test the current window size and return the name
@@ -413,11 +430,11 @@ util.get_size();
         </li>
         
         
-        <li id="section-16">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p><strong>test if element is shown</strong><br><code>util.is_shown</code></p>
 <p>Helper method to see if a <code>view</code> is currently displayed/shown.</p>
@@ -437,11 +454,11 @@ util.is_shown(<span class="hljs-string">'example_thing'</span>);
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p><strong>test if a state is currently set</strong><br><code>util.has_state</code></p>
 <p>Helper method to see if an application state is currently set.</p>
@@ -461,11 +478,11 @@ util.has_state(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p><strong>Store vanilla jQuery methods we’ll replace</strong><br><code>util.jquery_funcs</code>  </p>
 <p>We’ll need to store functions for <code>$.show</code>, <code>$.hide</code>
@@ -479,11 +496,11 @@ we’ll replace in jQuery.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p><strong>copy jQuery default methods, inject our modified versions</strong><br><code>util.jquery_inject</code></p>
 <p>We’ll need to listen for jQuery methods <code>.show</code>,<code>.hide</code>, and <code>.toggle</code>
@@ -537,11 +554,11 @@ worth noting this only happens if using auto/tracking functionality via <code>Mo
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <h2 id="event-handlers">event handlers</h2>
 <hr>
@@ -555,11 +572,11 @@ worth noting this only happens if using auto/tracking functionality via <code>Mo
         </li>
         
         
-        <li id="section-21">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p><strong>hide a view</strong><br><code>handlers.hide</code></p>
 <p>Hide a <em>view</em> by removing it’s class from <code>&lt;body&gt;</code>.</p>
@@ -576,11 +593,11 @@ handlers.hide(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p><strong>show a view</strong><br><code>handlers.show</code></p>
 <p>Show a <em>view</em> by adding it’s class to <code>&lt;body&gt;</code>.</p>
@@ -597,11 +614,11 @@ handlers.show(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-23">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p><strong>toggle a view</strong><br><code>handlers.toggle</code></p>
 <p>Flip a <em>view</em>‘s shown state based on it’s current state.</p>
@@ -625,11 +642,11 @@ handlers.toggle(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p><strong>hide a Marionette component</strong><br><code>handlers.marionette_hide</code></p>
 <p>Deal with a Marionette component being closed/hidden.</p>
@@ -643,11 +660,11 @@ handlers.toggle(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-25">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p><strong>show a Marionette component</strong><br><code>handlers.marionette_show</code></p>
 <p>Deal with a Marionette component being shown</p>
@@ -661,11 +678,11 @@ handlers.toggle(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-26">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p><strong>add a state class</strong><br><code>handlers.add_state</code></p>
 <p>Add a user defined state to the <code>&lt;html&gt;</code> element.</p>
@@ -682,11 +699,11 @@ handlers.add_state(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-27">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p><strong>delete a state class</strong><br><code>handlers.del_state</code></p>
 <p> Remove a user defined state from the <code>&lt;html&gt;</code> element. </p>
@@ -703,11 +720,11 @@ handlers.del_state(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-28">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p><strong>toggle a state class</strong><br><code>handlers.toggle_state</code></p>
 <p>Add or remove a user defined state from <code>&lt;html&gt;</code> element
@@ -731,11 +748,11 @@ handlers.toggle_state(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-29">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p><strong>window.resize handler/throttling</strong><br><code>handlers.resize</code>  </p>
 <p>Handle <code>resize</code> events from <code>window</code> with a short timeout
@@ -757,11 +774,11 @@ element.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p><strong>moshpit click handler</strong><br><code>handlers.click</code>  </p>
 <p>Handle <code>click</code> events from <code>document</code> to see if we need to handle them
@@ -792,11 +809,11 @@ catching the events we already know we care about.</em></p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <h2 id="private-setup-methods">Private setup methods</h2>
 <hr>
@@ -812,11 +829,11 @@ and <code>MoshPit.leave</code>.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p><strong>Tracked views/namespaces lookup</strong><br><code>moshpit.views</code></p>
 <p>A lookup object we’ll use to test events from
@@ -830,11 +847,11 @@ we’re currently tracking.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p><strong>Setup a tracked Marionette component</strong><br><code>moshpit.add_marionette</code>  </p>
 <p>Marionette components have their own event system  via <code>Marionette.Wreqr</code> for
@@ -853,11 +870,11 @@ for the <em>view</em> <code>el</code> as well.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p><strong>Remove tracking of Marionette component</strong><br><code>moshpit.del_marionette</code></p>
 <p>When removing tracking of a Marionette component we’ll need
@@ -875,11 +892,11 @@ as well as remove it’s jQuery tracking.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p><strong>Add a tracked <em>view</em></strong><br><code>moshpit.add_jquery</code></p>
 <p>We’ll rely on jQuery for tracking <em>view</em> changes that come in
@@ -896,11 +913,11 @@ via <code>.show</code>, <code>.hide</code>, and <code>.toggle</code>.  </p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p><strong>Remove a tracking from a <em>view</em></strong><br><code>moshpit.del_jquery</code></p>
 <p>Stop tracking a <em>view</em> and hide it.</p>
@@ -917,11 +934,11 @@ via <code>.show</code>, <code>.hide</code>, and <code>.toggle</code>.  </p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <h2 id="setup-moshpit-js-globals">Setup MoshPit.js globals</h2>
 <hr>
@@ -937,11 +954,11 @@ to have access to.</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p><strong>enable tracking of a <em>view</em></strong><br><code>MoshPit.join</code></p>
 <p>Will be called externally when a <em>view</em> wants to
@@ -976,11 +993,11 @@ $(<span class="hljs-string">'#example'</span>).show();
         </li>
         
         
-        <li id="section-39">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p><strong>disable tracking of a <em>view</em></strong><br><code>MoshPit.leave</code></p>
 <p>Will be called externally when a <em>view</em> no longer
@@ -1015,11 +1032,11 @@ $(<span class="hljs-string">'#example'</span>).show();
         </li>
         
         
-        <li id="section-40">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p><strong>manually show a <em>view</em></strong><br><code>MoshPit.show</code></p>
 <p>Let’s an external resource <code>show</code> a <em>view</em> regardless
@@ -1040,11 +1057,11 @@ of it’s tracked status.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p><strong>manually hide a <em>view</em></strong><br><code>MoshPit.hide</code></p>
 <p>Let’s an external resource <code>hide</code> a <em>view</em> regardless
@@ -1065,11 +1082,11 @@ of it’s tracked status.</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p><strong>manually toggle a <em>view</em></strong><br><code>MoshPit.toggle</code></p>
 <p>Let’s an external resource <code>toggle</code> a <em>view</em> regardless
@@ -1089,11 +1106,11 @@ MoshPit.toggle(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-43">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p><strong>check if a <em>view</em> is shown</strong><br><code>MoshPit.is_shown</code></p>
 <p>Externally accessible means to find out if a
@@ -1115,11 +1132,11 @@ MoshPit.is_shown(<span class="hljs-string">'example'</span>);
         </li>
         
         
-        <li id="section-44">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p><strong>add a <em>view state</em></strong><br><code>MoshPit.add_state</code></p>
 <p>Applies a <em>view state</em> to the entire page.</p>
@@ -1140,11 +1157,11 @@ less (as in LoC) generated CSS</em></p>
         </li>
         
         
-        <li id="section-45">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
               <p><strong>remove a <em>view state</em></strong><br><code>MoshPit.remove_state</code></p>
 <p>Removes a <em>view state</em> from the entire page.</p>
@@ -1162,11 +1179,11 @@ MoshPit.remove_state('highlight_all_examples");
         </li>
         
         
-        <li id="section-46">
+        <li id="section-47">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <p><strong>toggle a <em>view state</em></strong><br><code>MoshPit.toggle_state</code></p>
 <p>Toggles a <em>view state</em> on the entire page.</p>
@@ -1186,11 +1203,11 @@ MoshPit.toggle_state('highlight_all_examples");
         </li>
         
         
-        <li id="section-47">
+        <li id="section-48">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <p><strong>check if a <em>view state</em> is enabled</strong><br><code>MoshPit.has_state</code></p>
 <p>Externally accessible means to find out if a
@@ -1209,11 +1226,11 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
         </li>
         
         
-        <li id="section-48">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               
             </div>
@@ -1223,11 +1240,11 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
         </li>
         
         
-        <li id="section-49">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <h2 id="initialization-steps">initialization steps</h2>
 <hr>
@@ -1237,6 +1254,7 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> init = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+        sizes =  MoshPitSizes;
         handlers.resize();
         $html = $(<span class="hljs-string">'html'</span>);
         $body = $(<span class="hljs-string">'body'</span>);
@@ -1248,11 +1266,11 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
         </li>
         
         
-        <li id="section-50">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               
             </div>
