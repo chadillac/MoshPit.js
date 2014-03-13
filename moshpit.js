@@ -16,7 +16,7 @@
 // We declare these here so they can be customized outside
 // of the application code by you.  We don't assign/use them internally
 // until page DOM ready.
-var MoshPitSizes = {
+window.MoshPitSizes = {
     mobile:{min:0,max:480},  
     tablet:{min:481,max:1024},
     desktop:{min:1025,max:1820},
@@ -691,7 +691,7 @@ var MoshPitSizes = {
     // Steps we'll need to take on `domready`.  
     // Hook init into jQuery's `$.ready` event.
     var init = function() {
-        sizes =  MoshPitSizes;
+        sizes =  window.MoshPitSizes;
         handlers.resize();
         $html = $('html');
         $body = $('body');
