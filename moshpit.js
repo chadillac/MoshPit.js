@@ -9,6 +9,19 @@
 // [MIT license](https://github.com/chadillac/MoshPit.js/blob/master/LICENSE)
 //
 // ***
+
+// **Declare sizes globally, we'll import later**  
+// `MoshPitSizes`
+// 
+// We declare these here so they can be customized outside
+// of the application code by you.  We don't assign/use them internally
+// until page DOM ready.
+var MoshPitSizes = {
+    mobile:{min:0,max:480},  
+    tablet:{min:481,max:1024},
+    desktop:{min:1025,max:1820},
+    desktop_wide:{min:1821,max:99999999}
+};
 (function($){
     'use strict';
 
@@ -46,13 +59,8 @@
     // that will be used for that range.
     // 
     // `.mobile`, `.tablet`, `.desktop`, `.desktop_wide`
-    var sizes = {
-        mobile:{min:0,max:480},  
-        tablet:{min:481,max:1024},
-        desktop:{min:1025,max:1820},
-        desktop_wide:{min:1821,max:99999999}
-    };
-
+    var sizes = {};
+        
     // **setTimeout ID storage/mapping**  
     // `timers`
     //
@@ -683,6 +691,7 @@
     // Steps we'll need to take on `domready`.  
     // Hook init into jQuery's `$.ready` event.
     var init = function() {
+        sizes =  MoshPitSizes;
         handlers.resize();
         $html = $('html');
         $body = $('body');
