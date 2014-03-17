@@ -113,9 +113,16 @@ By default we notify you of 4 layouts.
     .mobile
     .tablet
     .desktop
-    .desktop_wide
+    .desktop-wide
 
-Currently you have to customize them directly in the MoshPit source, it's ugly... but you'll be able to provide a custom list of sizes and states that you expect to be used in the very near future.  The github repo includes a [build bash script](https://github.com/chadillac/MoshPit.js/tree/master/build) (Linux, it's pretty great.) for minifying the source via uglify-js if you need to modify the sizes and want a minified version for production.
+If you'd like to customize these sizes window.MoshPitSizes is a global object we consume on DOM ready, if you make changes to this or completely override it, they'll take affect when `MoshPit` does it's thing.  The github repo includes a [build bash script](https://github.com/chadillac/MoshPit.js/tree/master/build) (Linux, it's pretty great.) for minifying the source via uglify-js if you need to modify the sizes and want a minified version for production.
+
+###What if I need to make a decision on the screen size at some point, how can I know what size is currently set?
+
+     MoshPit.get_size()
+     > 'desktop'
+
+You can call `MoshPit.get_size()` and it will return the currently active size setting based on the windows measurements when it's called.
 
 ###Okay, but I don't really know LESS all that well...
 
