@@ -9,21 +9,21 @@
 // [MIT license](https://github.com/chadillac/MoshPit.js/blob/master/LICENSE)
 //
 // ***
-
-// **Declare sizes globally, we'll import later**  
-// `MoshPitSizes`
-// 
-// We declare these here so they can be customized outside
-// of the application code by you.  We don't assign/use them internally
-// until page DOM ready.
-window.MoshPitSizes = {
-    'mobile':{min:0,max:480},  
-    'tablet':{min:481,max:1024},
-    'desktop':{min:1025,max:1820},
-    'desktop-wide':{min:1821,max:99999999}
-};
 (function($){
     'use strict';
+
+    // **Declare sizes globally, we'll import later**  
+    // `MoshPitSizes`
+    // 
+    // We declare these here so they can be customized outside
+    // of the application code by you.  We don't assign/use them internally
+    // until page DOM ready.
+    window.MoshPitSizes = {
+        'mobile':{min:0,max:480},  
+        'tablet':{min:481,max:1024},
+        'desktop':{min:1025,max:1820},
+        'desktop-wide':{min:1821,max:99999999}
+    };
 
     // **cache jQuery objs**  
     // `$html`, `$body`
