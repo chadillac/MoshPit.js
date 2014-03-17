@@ -43,13 +43,13 @@
   left: 50.25%;
   right: 0.5%;
 }
-/* when we're in desktop or desktop_wide mode */
+/* when we're in desktop or desktop-wide mode */
 .desktop,
-.desktop_wide {
+.desktop-wide {
   /* display our .desktop_options elements */
 }
 .desktop .desktop_options,
-.desktop_wide .desktop_options {
+.desktop-wide .desktop_options {
   display: block;
 }
 /* when we're on a tablet */
@@ -123,14 +123,14 @@
   background-color: #EEE;
 }
 .state-horz.desktop .Panel_1-shown.Panel_2-shown #Panel_1,
-.state-horz.desktop_wide .Panel_1-shown.Panel_2-shown #Panel_1 {
+.state-horz.desktop-wide .Panel_1-shown.Panel_2-shown #Panel_1 {
   top: 55px;
   bottom: 50.25%;
   left: 0.5%;
   right: 0.5%;
 }
 .state-horz.desktop .Panel_1-shown.Panel_2-shown #Panel_2,
-.state-horz.desktop_wide .Panel_1-shown.Panel_2-shown #Panel_2 {
+.state-horz.desktop-wide .Panel_1-shown.Panel_2-shown #Panel_2 {
   top: 51%;
   bottom: 5px;
   left: 0.5%;
