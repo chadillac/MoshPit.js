@@ -39,14 +39,14 @@ window.MoshPitSizes = {
     // `css`
     //
     // Configuration object for CSS classes that will be generated when we 
-    // build our `_shown` and `state_` class chains in their respective `util` methods.
+    // build our `-shown` and `state-` class chains in their respective `util` methods.
     var css = {
         shown:{
             prefix:"",
-            postfix:"_shown"    
+            postfix:"-shown"    
         },
         state:{
-            prefix:"state_",
+            prefix:"state-",
             postfix:""
         }
     };
@@ -125,7 +125,7 @@ window.MoshPitSizes = {
         //
         //     // <body>
         //     util.exec_on_view_csv('list,of,things', handlers.show);
-        //     // <body class="list_shown of_shown things_shown">
+        //     // <body class="list-shown of-shown things-shown">
         exec_on_view_csv: function(csv,action) {
             var csv = csv.replace(/\s/g,'').split(',');
             for (var i=0,len=csv.length; i<len; i++) {
@@ -156,7 +156,7 @@ window.MoshPitSizes = {
         // Generate CSS class names for *shown* elements.
         //
         //     util.shown_class('list,of,things');
-        //     > 'list_shown of_shown things_shown'
+        //     > 'list-shown of-shown things-shown'
         shown_class: function(csv_list) {
             csv_list = csv_list.replace(/#/g,'');
             return util.csv_to_class(csv_list,css.shown.prefix,css.shown.postfix);
@@ -310,7 +310,7 @@ window.MoshPitSizes = {
         // 
         // Hide a *view* by removing it's class from `<body>`.
         // 
-        //     // <body class="example_shown">
+        //     // <body class="example-shown">
         //     handlers.hide('example');
         //     // <body class="">
         hide: function(namespace) {
@@ -323,7 +323,7 @@ window.MoshPitSizes = {
         //
         //     // <body>
         //     handlers.show('example');
-        //     // <body class="example_shown">
+        //     // <body class="example-shown">
         show: function(namespace) {
             $body.addClass(util.shown_class(util.get_namespace(namespace))); 
         },
@@ -334,7 +334,7 @@ window.MoshPitSizes = {
         //
         //     //<body>
         //     handlers.toggle('example');
-        //     //<body class="example_shown">
+        //     //<body class="example-shown">
         //     handlers.toggle('example');
         //     //<body class="">
         toggle: function(namespace) {
@@ -366,9 +366,9 @@ window.MoshPitSizes = {
         //
         //     // <html>
         //     handlers.add_state('example');
-        //     // <html class="state_example">
+        //     // <html class="state-example">
         add_state: function(state) {
-            $html.addClass("state_"+state);   
+            $html.addClass(css.state.prefix+state+css.state.postfix);   
         },
         // **delete a state class**  
         // `handlers.del_state`
@@ -379,7 +379,7 @@ window.MoshPitSizes = {
         //     handlers.del_state('example');
         //     // <html class="">
         del_state: function(state) {
-            $html.removeClass("state_"+state);   
+            $html.removeClass(css.state.prefix+state+css.state.postfix);   
         },
         // **toggle a state class**  
         // `handlers.toggle_state`
@@ -680,7 +680,17 @@ window.MoshPitSizes = {
         //     // <html class="">
         //     MoshPit.has_state("highlight_all_examples");
         //     > false
-        has_state: util.has_state
+        has_state: util.has_state,
+        // **get current display size**  
+        // `MoshPit.get_size`
+        //
+        // Externally accessible means to find out the current
+        // size of the display.
+        //
+        //     // <html class="desktop">
+        //     MoshPit.get_size();
+        //     > desktop
+        get_size: util.get_size
         //
     };
 

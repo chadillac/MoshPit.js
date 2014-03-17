@@ -19,7 +19,7 @@
 }
 
 /* when #Panel_1 is shown */
-.Panel_1_shown {
+.Panel_1-shown {
     /* display it */
     #Panel_1 {
         display:block;    
@@ -27,7 +27,7 @@
 }
 
 /* when #Panel_2 is shown */
-.Panel_2_shown {
+.Panel_2-shown {
     /* display it */
     #Panel_2 {
         display:block;    
@@ -35,7 +35,7 @@
 }
 
 /* when #Panel_1 and #Panel_2 are shown */
-.Panel_1_shown.Panel_2_shown {
+.Panel_1-shown.Panel_2-shown {
     /* Panel_1 will use the left half of the screen */
     #Panel_1 {
         left:0.5%;    
@@ -60,7 +60,7 @@
 /* when we're on a tablet */
 .tablet {
     /* when we're on a tablet and showing both panels */
-    .Panel_1_shown.Panel_2_shown {
+    .Panel_1-shown.Panel_2-shown {
         /* the panels should have a different background color
         ** and we'll make them flush with the left and right of
         ** the screen since we have less space for content, we'll
@@ -111,14 +111,14 @@
     }
 
     /* if #Panel_1 is shown, we'll show the #Panel_2 toggle controls */
-    .Panel_1_shown {
+    .Panel_1-shown {
         .Panel_2_toggle {
             display:block !important;    
         }    
     }
 
     /* when #Panel_2 is shown */
-    .Panel_2_shown {
+    .Panel_2-shown {
         /* we'll hide #Panel_1 and #Panel_1's toggle controls */
         #Panel_1,
         .Panel_1_toggle {
@@ -134,9 +134,9 @@
     }
 }
 
-.state_horz.desktop,
-.state_horz.desktop_wide {
-    .Panel_1_shown.Panel_2_shown {
+.state-horz.desktop,
+.state-horz.desktop_wide {
+    .Panel_1-shown.Panel_2-shown {
         #Panel_1 {
             top:55px;
             bottom:50.25%;
