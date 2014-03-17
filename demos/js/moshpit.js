@@ -17,10 +17,10 @@
 // of the application code by you.  We don't assign/use them internally
 // until page DOM ready.
 window.MoshPitSizes = {
-    mobile:{min:0,max:480},  
-    tablet:{min:481,max:1024},
-    desktop:{min:1025,max:1820},
-    desktop_wide:{min:1821,max:99999999}
+    'mobile':{min:0,max:480},  
+    'tablet':{min:481,max:1024},
+    'desktop':{min:1025,max:1820},
+    'desktop-wide':{min:1821,max:99999999}
 };
 (function($){
     'use strict';
