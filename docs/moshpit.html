@@ -139,17 +139,17 @@ get their variables in place now.</em></p>
               </div>
               <p><strong>css class configuration</strong><br><code>css</code></p>
 <p>Configuration object for CSS classes that will be generated when we 
-build our <code>_shown</code> and <code>state_</code> class chains in their respective <code>util</code> methods.</p>
+build our <code>-shown</code> and <code>state-</code> class chains in their respective <code>util</code> methods.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> css = {
         shown:{
             prefix:<span class="hljs-string">""</span>,
-            postfix:<span class="hljs-string">"_shown"</span>    
+            postfix:<span class="hljs-string">"-shown"</span>    
         },
         state:{
-            prefix:<span class="hljs-string">"state_"</span>,
+            prefix:<span class="hljs-string">"state-"</span>,
             postfix:<span class="hljs-string">""</span>
         }
     };</pre></div></div>
@@ -283,7 +283,7 @@ be added to each item in the list as it’s built.</p>
 each <em>view</em> from the list as the passed in param</p>
 <pre><code><span class="hljs-comment">// &lt;body&gt;</span>
 util.exec_on_view_csv(<span class="hljs-string">'list,of,things'</span>, handlers.show);
-<span class="hljs-comment">// &lt;body class="list_shown of_shown things_shown"&gt;</span>
+<span class="hljs-comment">// &lt;body class="list-shown of-shown things-shown"&gt;</span>
 </code></pre>
             </div>
             
@@ -334,7 +334,7 @@ util.exec_on_state_csv(<span class="hljs-string">'list,of,things'</span>, handle
               <p><strong>generate <em>shown</em> classes</strong><br><code>util.shown_class</code></p>
 <p>Generate CSS class names for <em>shown</em> elements.</p>
 <pre><code>util.shown_class(<span class="hljs-string">'list,of,things'</span>);
-&gt; <span class="hljs-string">'list_shown of_shown things_shown'</span>
+&gt; <span class="hljs-string">'list-shown of-shown things-shown'</span>
 </code></pre>
             </div>
             
@@ -580,7 +580,7 @@ worth noting this only happens if using auto/tracking functionality via <code>Mo
               </div>
               <p><strong>hide a view</strong><br><code>handlers.hide</code></p>
 <p>Hide a <em>view</em> by removing it’s class from <code>&lt;body&gt;</code>.</p>
-<pre><code><span class="hljs-comment">// &lt;body class="example_shown"&gt;</span>
+<pre><code><span class="hljs-comment">// &lt;body class="example-shown"&gt;</span>
 handlers.hide(<span class="hljs-string">'example'</span>);
 <span class="hljs-comment">// &lt;body class=""&gt;</span>
 </code></pre>
@@ -603,7 +603,7 @@ handlers.hide(<span class="hljs-string">'example'</span>);
 <p>Show a <em>view</em> by adding it’s class to <code>&lt;body&gt;</code>.</p>
 <pre><code><span class="hljs-comment">// &lt;body&gt;</span>
 handlers.show(<span class="hljs-string">'example'</span>);
-<span class="hljs-comment">// &lt;body class="example_shown"&gt;</span>
+<span class="hljs-comment">// &lt;body class="example-shown"&gt;</span>
 </code></pre>
             </div>
             
@@ -624,7 +624,7 @@ handlers.show(<span class="hljs-string">'example'</span>);
 <p>Flip a <em>view</em>‘s shown state based on it’s current state.</p>
 <pre><code><span class="hljs-comment">//&lt;body&gt;</span>
 handlers.toggle(<span class="hljs-string">'example'</span>);
-<span class="hljs-comment">//&lt;body class="example_shown"&gt;</span>
+<span class="hljs-comment">//&lt;body class="example-shown"&gt;</span>
 handlers.toggle(<span class="hljs-string">'example'</span>);
 <span class="hljs-comment">//&lt;body class=""&gt;</span>
 </code></pre>
@@ -688,12 +688,12 @@ handlers.toggle(<span class="hljs-string">'example'</span>);
 <p>Add a user defined state to the <code>&lt;html&gt;</code> element.</p>
 <pre><code><span class="hljs-comment">// &lt;html&gt;</span>
 handlers.add_state(<span class="hljs-string">'example'</span>);
-<span class="hljs-comment">// &lt;html class="state_example"&gt;</span>
+<span class="hljs-comment">// &lt;html class="state-example"&gt;</span>
 </code></pre>
             </div>
             
             <div class="content"><div class='highlight'><pre>        add_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
-            $html.addClass(<span class="hljs-string">"state_"</span>+state);   
+            $html.addClass(css.state.prefix+state+css.state.postfix);   
         },</pre></div></div>
             
         </li>
@@ -714,7 +714,7 @@ handlers.del_state(<span class="hljs-string">'example'</span>);
             </div>
             
             <div class="content"><div class='highlight'><pre>        del_state: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> {</span>
-            $html.removeClass(<span class="hljs-string">"state_"</span>+state);   
+            $html.removeClass(css.state.prefix+state+css.state.postfix);   
         },</pre></div></div>
             
         </li>
@@ -1221,7 +1221,7 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
 </code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>        has_state: util.has_state</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        has_state: util.has_state,</pre></div></div>
             
         </li>
         
@@ -1232,10 +1232,16 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
-              
+              <p><strong>get current display size</strong><br><code>MoshPit.get_size</code></p>
+<p>Externally accessible means to find out the current
+size of the display.</p>
+<pre><code><span class="hljs-comment">// &lt;html class="desktop"&gt;</span>
+MoshPit.get_size();
+&gt; desktop
+</code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>    };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        get_size: util.get_size</pre></div></div>
             
         </li>
         
@@ -1245,6 +1251,20 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <h2 id="initialization-steps">initialization steps</h2>
 <hr>
@@ -1266,11 +1286,11 @@ MoshPit.has_state(<span class="hljs-string">"highlight_all_examples"</span>);
         </li>
         
         
-        <li id="section-51">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               
             </div>

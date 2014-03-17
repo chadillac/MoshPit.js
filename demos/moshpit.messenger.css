@@ -14,7 +14,7 @@
   color: #FFF;
 }
 /* message_content will consume the entire view and will never be 
-   hidden, therefore it doesn't need a _shown class */
+   hidden, therefore it doesn't need a -shown class */
 #message_content {
   position: absolute;
   top: 0;
@@ -117,23 +117,23 @@
   color: #000;
 }
 /* now we configure what we want when threads is shown */
-.threads_shown {
+.threads-shown {
   /* put it on screen */
   /* move message_content and message_details 250px
        off the left side, since we're now consuming that space */
 }
-.threads_shown #threads {
+.threads-shown #threads {
   left: 0;
   /* flip the buttons that are visible */
 }
-.threads_shown #threads #show_threads {
+.threads-shown #threads #show_threads {
   display: none;
 }
-.threads_shown #threads #hide_threads {
+.threads-shown #threads #hide_threads {
   display: block;
 }
-.threads_shown #message_content,
-.threads_shown #message_details {
+.threads-shown #message_content,
+.threads-shown #message_details {
   left: 250px;
 }
 /* defaults for message details, also, since it can be hidden we'll hide it
@@ -180,62 +180,62 @@
   color: #666;
 }
 /* message details are now shown */
-.message_details_shown {
+.message_details-shown {
   /* move it on screen */
   /* push the message content 100px off the top
        since we're now consuming that space */
 }
-.message_details_shown #message_details {
+.message_details-shown #message_details {
   top: 0;
   /* flip buttons */
 }
-.message_details_shown #message_details #show_message_details {
+.message_details-shown #message_details #show_message_details {
   display: none;
 }
-.message_details_shown #message_details #hide_message_details {
+.message_details-shown #message_details #hide_message_details {
   display: block;
 }
-.message_details_shown #message_content {
+.message_details-shown #message_content {
   top: 100px;
 }
 /* user defined application state called dark_mode */
-.state_dark_mode {
+.state-dark_mode {
   /* darken the things! */
 }
-.state_dark_mode body {
+.state-dark_mode body {
   background-color: #000;
 }
-.state_dark_mode #threads #threads_list {
+.state-dark_mode #threads #threads_list {
   background-color: #000;
 }
-.state_dark_mode #threads #threads_list li {
+.state-dark_mode #threads #threads_list li {
   background-color: #333;
   color: #CCC;
   border-bottom: 1px solid #666;
 }
-.state_dark_mode #message_details {
+.state-dark_mode #message_details {
   background-color: #000;
   color: #999;
 }
-.state_dark_mode #message_content {
+.state-dark_mode #message_content {
   background-color: #000;
 }
-.state_dark_mode #message_content .message-entry {
+.state-dark_mode #message_content .message-entry {
   background-color: #333;
   color: #FFF;
   border: 1px solid #666;
 }
-.state_dark_mode #message_content .message-to :first-child {
+.state-dark_mode #message_content .message-to :first-child {
   color: pink;
 }
-.state_dark_mode #message_content .message-from :first-child {
+.state-dark_mode #message_content .message-from :first-child {
   color: orange;
 }
 /* user defined state called eyes_bleed */
-.state_eyes_bleed {
+.state-eyes_bleed {
   /* make you want to gouge out your eyes */
 }
-.state_eyes_bleed * {
+.state-eyes_bleed * {
   background-color: #BBFF00 !important;
   color: #55FFFF !important;
 }
@@ -289,18 +289,18 @@
   left: 0;
   right: 0;
 }
-.mobile .message_details_shown,
-.tablet .message_details_shown {
+.mobile .message_details-shown,
+.tablet .message_details-shown {
   /* we'll set their top to 40.5% */
   /* and we'll make the threads display only consume the 
            top 40% of the screen, leaving 10% for message_details
            to live when visible */
 }
-.mobile .message_details_shown #message_details,
-.tablet .message_details_shown #message_details {
+.mobile .message_details-shown #message_details,
+.tablet .message_details-shown #message_details {
   top: 40.5%;
 }
-.mobile .message_details_shown #threads,
-.tablet .message_details_shown #threads {
+.mobile .message_details-shown #threads,
+.tablet .message_details-shown #threads {
   bottom: 60%;
 }
