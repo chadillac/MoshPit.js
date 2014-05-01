@@ -282,7 +282,7 @@
                         handlers.hide(namespace);
                         return this;
                     } else {
-                        return util.jquery_funcs.show.apply(this,arguments);    
+                        return util.jquery_funcs.hide.apply(this,arguments);    
                     }
                 };    
                 util.jquery_funcs.toggle = $.fn.toggle;
